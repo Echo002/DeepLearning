@@ -44,15 +44,12 @@ print(demoModel.coef_)
 print(demoModel.intercept_)
 demoModel.predict([11,50])
 '''
+# github测试文件
 #建模
-
-
-
 #训练模型
-
-
-demoModel.predict([11])
 '''
+
+
 
 
 
