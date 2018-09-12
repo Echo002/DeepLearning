@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a0a90b6c-7081-4765-a5c3-5415eb63b90f" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/s1.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/s2.py" beforeDir="false" />
-    </list>
+    <list default="true" id="a0a90b6c-7081-4765-a5c3-5415eb63b90f" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -95,6 +91,16 @@
           <entry key="Python" value="1" />
         </counts>
       </usages-collector>
+      <usages-collector id="statistics.file.extensions.edit">
+        <counts>
+          <entry key="py" value="22" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.edit">
+        <counts>
+          <entry key="Python" value="22" />
+        </counts>
+      </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
@@ -102,8 +108,11 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Regression/SimpleLinearRegression/demo.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="510">
-              <caret line="33" column="18" selection-start-line="33" selection-start-column="18" selection-end-line="33" selection-end-column="18" />
+            <state relative-caret-position="461">
+              <caret line="48" column="15" selection-start-line="48" selection-start-column="15" selection-end-line="48" selection-end-column="15" />
+              <folding>
+                <element signature="e#718#730#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -143,6 +152,7 @@
         <option value="$PROJECT_DIR$/Regression/MultipleLinearRegression/demo.py" />
         <option value="$PROJECT_DIR$/s2.py" />
         <option value="$PROJECT_DIR$/s1.py" />
+        <option value="$PROJECT_DIR$/Regression/SimpleLinearRegression/demo.py" />
       </list>
     </option>
   </component>
@@ -173,17 +183,6 @@
             <path>
               <item name="DeepLearning" type="b2602c69:ProjectViewProjectNode" />
               <item name="DeepLearning" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="DeepLearning" type="b2602c69:ProjectViewProjectNode" />
-              <item name="DeepLearning" type="462c0819:PsiDirectoryNode" />
-              <item name="Regression" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="DeepLearning" type="b2602c69:ProjectViewProjectNode" />
-              <item name="DeepLearning" type="462c0819:PsiDirectoryNode" />
-              <item name="Regression" type="462c0819:PsiDirectoryNode" />
-              <item name="SimpleLinearRegression" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -376,14 +375,27 @@
       <option name="project" value="LOCAL" />
       <updated>1536719968509</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="test pycharm">
+      <created>1536723696115</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1536723696115</updated>
+    </task>
+    <task id="LOCAL-00005" summary="test pycharm">
+      <created>1536723825685</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1536723825685</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="459" y="16" width="1400" height="1000" extended-state="1" />
-    <editor active="true" />
+    <frame x="459" y="16" width="1400" height="1000" extended-state="0" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.15298508" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.15298508" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -394,9 +406,9 @@
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="8" sideWeight="0.49946696" visible="true" weight="0.30831409" />
+      <window_info anchor="bottom" id="Version Control" order="8" sideWeight="0.49850747" visible="true" weight="0.30831409" />
       <window_info anchor="bottom" id="Database Changes" order="9" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50053304" side_tool="true" weight="0.3290993" />
+      <window_info active="true" anchor="bottom" id="Event Log" order="10" sideWeight="0.50149256" side_tool="true" visible="true" weight="0.30831409" />
       <window_info anchor="bottom" id="Terminal" order="11" weight="0.329718" />
       <window_info anchor="bottom" id="Python Console" order="12" />
       <window_info anchor="bottom" id="SVN Repositories" order="13" weight="0.329718" />
@@ -504,8 +516,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Regression/SimpleLinearRegression/demo.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="510">
-          <caret line="33" column="18" selection-start-line="33" selection-start-column="18" selection-end-line="33" selection-end-column="18" />
+        <state relative-caret-position="461">
+          <caret line="48" column="15" selection-start-line="48" selection-start-column="15" selection-end-line="48" selection-end-column="15" />
+          <folding>
+            <element signature="e#718#730#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
