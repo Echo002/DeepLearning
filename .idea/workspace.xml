@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a0a90b6c-7081-4765-a5c3-5415eb63b90f" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/s1.py" beforeDir="false" afterPath="$PROJECT_DIR$/s1.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/s1.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/s2.py" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -79,15 +81,29 @@
           <entry key="project.opened" value="1" />
         </counts>
       </usages-collector>
+      <usages-collector id="statistics.file.extensions.open">
+        <counts>
+          <entry key="gitattributes" value="1" />
+          <entry key="md" value="1" />
+          <entry key="py" value="1" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.open">
+        <counts>
+          <entry key="Markdown" value="1" />
+          <entry key="PLAIN_TEXT" value="1" />
+          <entry key="Python" value="1" />
+        </counts>
+      </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/s1.py">
+        <entry file="file://$PROJECT_DIR$/Regression/SimpleLinearRegression/demo.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="595">
-              <caret line="35" column="12" lean-forward="true" selection-start-line="35" selection-start-column="12" selection-end-line="35" selection-end-column="12" />
+            <state relative-caret-position="510">
+              <caret line="33" column="18" selection-start-line="33" selection-start-column="18" selection-end-line="33" selection-end-column="18" />
             </state>
           </provider>
         </entry>
@@ -106,8 +122,16 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="WARN_ABOUT_CRLF" value="false" />
     <option name="WARN_ABOUT_DETACHED_HEAD" value="false" />
+    <option name="PUSH_TAGS">
+      <GitPushTagMode />
+    </option>
     <option name="PREVIEW_PUSH_ON_COMMIT_AND_PUSH" value="false" />
     <option name="ADD_SUFFIX_TO_CHERRY_PICKS_OF_PUBLISHED_COMMITS" value="false" />
+  </component>
+  <component name="GithubProjectSettings">
+    <option name="CREATE_PULL_REQUEST_DEFAULT_BRANCH" value="master" />
+    <option name="CREATE_PULL_REQUEST_DEFAULT_REPO_USER" value="Echo002" />
+    <option name="CREATE_PULL_REQUEST_DEFAULT_REPO_NAME" value="DeepLearning" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -128,9 +152,9 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="128" />
-    <option name="y" value="26" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="459" />
+    <option name="y" value="16" />
     <option name="width" value="1400" />
     <option name="height" value="1000" />
   </component>
@@ -147,8 +171,19 @@
         <subPane>
           <expand>
             <path>
-              <item name="Py" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Py" type="462c0819:PsiDirectoryNode" />
+              <item name="DeepLearning" type="b2602c69:ProjectViewProjectNode" />
+              <item name="DeepLearning" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="DeepLearning" type="b2602c69:ProjectViewProjectNode" />
+              <item name="DeepLearning" type="462c0819:PsiDirectoryNode" />
+              <item name="Regression" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="DeepLearning" type="b2602c69:ProjectViewProjectNode" />
+              <item name="DeepLearning" type="462c0819:PsiDirectoryNode" />
+              <item name="Regression" type="462c0819:PsiDirectoryNode" />
+              <item name="SimpleLinearRegression" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -345,10 +380,10 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <frame x="459" y="16" width="1400" height="1000" extended-state="1" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.10927505" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.15298508" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -359,9 +394,9 @@
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="8" sideWeight="0.49946696" weight="0.30911064" />
+      <window_info anchor="bottom" id="Version Control" order="8" sideWeight="0.49946696" visible="true" weight="0.30831409" />
       <window_info anchor="bottom" id="Database Changes" order="9" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50053304" side_tool="true" weight="0.329718" />
+      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50053304" side_tool="true" weight="0.3290993" />
       <window_info anchor="bottom" id="Terminal" order="11" weight="0.329718" />
       <window_info anchor="bottom" id="Python Console" order="12" />
       <window_info anchor="bottom" id="SVN Repositories" order="13" weight="0.329718" />
@@ -374,6 +409,32 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="RECENTLY_FILTERED_USER_GROUPS">
+                <collection />
+              </option>
+              <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+                <collection />
+              </option>
+              <option name="COLUMN_ORDER">
+                <list>
+                  <option value="0" />
+                  <option value="1" />
+                  <option value="2" />
+                  <option value="3" />
+                </list>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
@@ -402,13 +463,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Regression/SimpleLinearRegression/demo.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="510">
-          <caret line="33" column="18" selection-start-line="33" selection-start-column="18" selection-end-line="33" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python37/Lib/site-packages/sklearn/linear_model/base.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-467">
@@ -434,6 +488,24 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="595">
           <caret line="35" column="12" lean-forward="true" selection-start-line="35" selection-start-column="12" selection-end-line="35" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor />
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitattributes">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Regression/SimpleLinearRegression/demo.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="510">
+          <caret line="33" column="18" selection-start-line="33" selection-start-column="18" selection-end-line="33" selection-end-column="18" />
         </state>
       </provider>
     </entry>
