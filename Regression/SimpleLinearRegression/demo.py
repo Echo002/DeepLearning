@@ -46,4 +46,9 @@ beta = demoModel.coef_[0][0]
 print(alpha + beta*numpy.array([60,70]))
 print(demoModel.predict([[60],[70]]))
 
-# 真的吗
+x = data[['AD']]
+y = data[['sell']]
+x = data[['AD']]
+y = data[['sell']]
+x = data[['AD']]
+y = data[['sell']]
