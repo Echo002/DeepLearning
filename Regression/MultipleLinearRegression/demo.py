@@ -44,11 +44,3 @@ demoModel.fit(x,y)
 print(demoModel.coef_)
 print(demoModel.intercept_)
 demoModel.predict([[11,50]])
-
-# 在python上修改
-
-
-
-
-
-
