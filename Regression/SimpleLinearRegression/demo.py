@@ -47,3 +47,8 @@ print(alpha + beta*numpy.array([60,70]))
 print(demoModel.predict([[60],[70]]))
 
 # 真的吗
+print(demoModel.predict([[60],[70]]))
+print(demoModel.predict([[60],[70]]))
+print(demoModel.predict([[60],[70]]))
+print(demoModel.predict([[60],[70]]))
+print(demoModel.predict([[60],[70]]))
