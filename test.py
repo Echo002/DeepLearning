@@ -27,3 +27,5 @@
 图解笔记完成情况
 5 6 7 8 9 10 14
 '''
+
+import tensorflow
