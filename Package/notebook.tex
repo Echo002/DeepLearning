@@ -1,0 +1,1315 @@
+
+% Default to the notebook output style
+
+    
+
+
+% Inherit from the specified cell style.
+
+
+
+
+    
+\documentclass[11pt]{article}
+
+    
+    
+    \usepackage[T1]{fontenc}
+    % Nicer default font (+ math font) than Computer Modern for most use cases
+    \usepackage{mathpazo}
+
+    % Basic figure setup, for now with no caption control since it's done
+    % automatically by Pandoc (which extracts ![](path) syntax from Markdown).
+    \usepackage{graphicx}
+    % We will generate all images so they have a width \maxwidth. This means
+    % that they will get their normal width if they fit onto the page, but
+    % are scaled down if they would overflow the margins.
+    \makeatletter
+    \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth
+    \else\Gin@nat@width\fi}
+    \makeatother
+    \let\Oldincludegraphics\includegraphics
+    % Set max figure width to be 80% of text width, for now hardcoded.
+    \renewcommand{\includegraphics}[1]{\Oldincludegraphics[width=.8\maxwidth]{#1}}
+    % Ensure that by default, figures have no caption (until we provide a
+    % proper Figure object with a Caption API and a way to capture that
+    % in the conversion process - todo).
+    \usepackage{caption}
+    \DeclareCaptionLabelFormat{nolabel}{}
+    \captionsetup{labelformat=nolabel}
+
+    \usepackage{adjustbox} % Used to constrain images to a maximum size 
+    \usepackage{xcolor} % Allow colors to be defined
+    \usepackage{enumerate} % Needed for markdown enumerations to work
+    \usepackage{geometry} % Used to adjust the document margins
+    \usepackage{amsmath} % Equations
+    \usepackage{amssymb} % Equations
+    \usepackage{textcomp} % defines textquotesingle
+    % Hack from http://tex.stackexchange.com/a/47451/13684:
+    \AtBeginDocument{%
+        \def\PYZsq{\textquotesingle}% Upright quotes in Pygmentized code
+    }
+    \usepackage{upquote} % Upright quotes for verbatim code
+    \usepackage{eurosym} % defines \euro
+    \usepackage[mathletters]{ucs} % Extended unicode (utf-8) support
+    \usepackage[utf8x]{inputenc} % Allow utf-8 characters in the tex document
+    \usepackage{fancyvrb} % verbatim replacement that allows latex
+    \usepackage{grffile} % extends the file name processing of package graphics 
+                         % to support a larger range 
+    % The hyperref package gives us a pdf with properly built
+    % internal navigation ('pdf bookmarks' for the table of contents,
+    % internal cross-reference links, web links for URLs, etc.)
+    \usepackage{hyperref}
+    \usepackage{longtable} % longtable support required by pandoc >1.10
+    \usepackage{booktabs}  % table support for pandoc > 1.12.2
+    \usepackage[inline]{enumitem} % IRkernel/repr support (it uses the enumerate* environment)
+    \usepackage[normalem]{ulem} % ulem is needed to support strikethroughs (\sout)
+                                % normalem makes italics be italics, not underlines
+    
+
+    
+    
+    % Colors for the hyperref package
+    \definecolor{urlcolor}{rgb}{0,.145,.698}
+    \definecolor{linkcolor}{rgb}{.71,0.21,0.01}
+    \definecolor{citecolor}{rgb}{.12,.54,.11}
+
+    % ANSI colors
+    \definecolor{ansi-black}{HTML}{3E424D}
+    \definecolor{ansi-black-intense}{HTML}{282C36}
+    \definecolor{ansi-red}{HTML}{E75C58}
+    \definecolor{ansi-red-intense}{HTML}{B22B31}
+    \definecolor{ansi-green}{HTML}{00A250}
+    \definecolor{ansi-green-intense}{HTML}{007427}
+    \definecolor{ansi-yellow}{HTML}{DDB62B}
+    \definecolor{ansi-yellow-intense}{HTML}{B27D12}
+    \definecolor{ansi-blue}{HTML}{208FFB}
+    \definecolor{ansi-blue-intense}{HTML}{0065CA}
+    \definecolor{ansi-magenta}{HTML}{D160C4}
+    \definecolor{ansi-magenta-intense}{HTML}{A03196}
+    \definecolor{ansi-cyan}{HTML}{60C6C8}
+    \definecolor{ansi-cyan-intense}{HTML}{258F8F}
+    \definecolor{ansi-white}{HTML}{C5C1B4}
+    \definecolor{ansi-white-intense}{HTML}{A1A6B2}
+
+    % commands and environments needed by pandoc snippets
+    % extracted from the output of `pandoc -s`
+    \providecommand{\tightlist}{%
+      \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+    % Add ',fontsize=\small' for more characters per line
+    \newenvironment{Shaded}{}{}
+    \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+    \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+    \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+    \newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+    \newcommand{\RegionMarkerTok}[1]{{#1}}
+    \newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\NormalTok}[1]{{#1}}
+    
+    % Additional commands for more recent versions of Pandoc
+    \newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{{#1}}}
+    \newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{{#1}}}
+    \newcommand{\ImportTok}[1]{{#1}}
+    \newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{{#1}}}}
+    \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{{#1}}}
+    \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{{#1}}}
+    \newcommand{\BuiltInTok}[1]{{#1}}
+    \newcommand{\ExtensionTok}[1]{{#1}}
+    \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{{#1}}}
+    \newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{{#1}}}
+    \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    
+    
+    % Define a nice break command that doesn't care if a line doesn't already
+    % exist.
+    \def\br{\hspace*{\fill} \\* }
+    % Math Jax compatability definitions
+    \def\gt{>}
+    \def\lt{<}
+    % Document parameters
+    \title{numpy challenge}
+    
+    
+    
+
+    % Pygments definitions
+    
+\makeatletter
+\def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
+    \let\PY@ul=\relax \let\PY@tc=\relax%
+    \let\PY@bc=\relax \let\PY@ff=\relax}
+\def\PY@tok#1{\csname PY@tok@#1\endcsname}
+\def\PY@toks#1+{\ifx\relax#1\empty\else%
+    \PY@tok{#1}\expandafter\PY@toks\fi}
+\def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
+    \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
+\def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
+
+\expandafter\def\csname PY@tok@w\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
+\expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ow\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@ne\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
+\expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@no\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ni\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
+\expandafter\def\csname PY@tok@na\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
+\expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@s\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@si\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sr\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@ss\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@gh\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gu\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gr\endcsname{\def\PY@tc##1{\textcolor[rgb]{1.00,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
+\expandafter\def\csname PY@tok@gs\endcsname{\let\PY@bf=\textbf}
+\expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@go\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.53,0.53}{##1}}}
+\expandafter\def\csname PY@tok@gt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\expandafter\def\csname PY@tok@err\endcsname{\def\PY@bc##1{\setlength{\fboxsep}{0pt}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}
+\expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kd\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kr\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@fm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@vc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vg\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sa\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@dl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s2\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@mb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@il\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mo\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ch\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cpf\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+
+\def\PYZbs{\char`\\}
+\def\PYZus{\char`\_}
+\def\PYZob{\char`\{}
+\def\PYZcb{\char`\}}
+\def\PYZca{\char`\^}
+\def\PYZam{\char`\&}
+\def\PYZlt{\char`\<}
+\def\PYZgt{\char`\>}
+\def\PYZsh{\char`\#}
+\def\PYZpc{\char`\%}
+\def\PYZdl{\char`\$}
+\def\PYZhy{\char`\-}
+\def\PYZsq{\char`\'}
+\def\PYZdq{\char`\"}
+\def\PYZti{\char`\~}
+% for compatibility with earlier versions
+\def\PYZat{@}
+\def\PYZlb{[}
+\def\PYZrb{]}
+\makeatother
+
+
+    % Exact colors from NB
+    \definecolor{incolor}{rgb}{0.0, 0.0, 0.5}
+    \definecolor{outcolor}{rgb}{0.545, 0.0, 0.0}
+
+
+
+    
+    % Prevent overflowing lines due to hard-to-break entities
+    \sloppy 
+    % Setup hyperref package
+    \hypersetup{
+      breaklinks=true,  % so long urls are correctly broken across lines
+      colorlinks=true,
+      urlcolor=urlcolor,
+      linkcolor=linkcolor,
+      citecolor=citecolor,
+      }
+    % Slightly bigger margins than the latex defaults
+    
+    \geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+    
+    
+
+    \begin{document}
+    
+    
+    \maketitle
+    
+    
+
+    
+    Level Up: 挑战你的 numpy 技能
+
+    \subsubsection{挑战 1 ：引入 numpy 并查看 numpy
+的版本。}\label{ux6311ux6218-1-ux5f15ux5165-numpy-ux5e76ux67e5ux770b-numpy-ux7684ux7248ux672c}
+
+要求：这是第一步，以后我们使用 numpy 时都将用别名 np。
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}1}]:} \PY{c+c1}{\PYZsh{} 答案}
+        \PY{k+kn}{import} \PY{n+nn}{numpy} \PY{k}{as} \PY{n+nn}{np}
+        \PY{n+nb}{print}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{\PYZus{}\PYZus{}version\PYZus{}\PYZus{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+1.14.3
+
+    \end{Verbatim}
+
+    \subsubsection{挑战 2
+：创建数组}\label{ux6311ux6218-2-ux521bux5efaux6570ux7ec4}
+
+要求：创建一维数组，内容为从 0 到 9。
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}2}]:} \PY{n}{arr} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{arange}\PY{p}{(}\PY{l+m+mi}{20}\PY{p}{)}
+        \PY{n+nb}{type}\PY{p}{(}\PY{n}{arr}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}2}]:} numpy.ndarray
+\end{Verbatim}
+            
+    \subsubsection{挑战 3
+：创建布尔数组}\label{ux6311ux6218-3-ux521bux5efaux5e03ux5c14ux6570ux7ec4}
+
+要求：数组大小为 3*3，全部为 True。
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}3}]:} \PY{c+c1}{\PYZsh{} 答案一：}
+        \PY{n}{a1} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{full}\PY{p}{(}\PY{p}{(}\PY{l+m+mi}{3}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{)}\PY{p}{,} \PY{k+kc}{True}\PY{p}{,} \PY{n}{dtype}\PY{o}{=}\PY{n+nb}{bool}\PY{p}{)}
+        \PY{c+c1}{\PYZsh{} 函数full为创建由常数填充的数组；第一个参数为形状，第二个参数为数据}
+        \PY{n+nb}{print}\PY{p}{(}\PY{n}{a1}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} 答案二：}
+        \PY{n}{a2} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{zeros}\PY{p}{(}\PY{p}{(}\PY{l+m+mi}{3}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{)}\PY{p}{,} \PY{n}{dtype}\PY{o}{=}\PY{n+nb}{bool}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{n}{a2}\PY{p}{)}
+        \PY{c+c1}{\PYZsh{} zeros创建False ones创建True}
+        
+        \PY{n}{a3} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{full}\PY{p}{(}\PY{p}{(}\PY{l+m+mi}{3}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{)}\PY{p}{,}\PY{l+m+mi}{5}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{n}{a3}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+[[ True  True  True]
+ [ True  True  True]
+ [ True  True  True]]
+[[False False False]
+ [False False False]
+ [False False False]]
+[[5 5 5]
+ [5 5 5]
+ [5 5 5]]
+
+    \end{Verbatim}
+
+    \subsubsection{挑战 4
+：按要求抽取数组中的元素}\label{ux6311ux6218-4-ux6309ux8981ux6c42ux62bdux53d6ux6570ux7ec4ux4e2dux7684ux5143ux7d20}
+
+要求：原数组 arr 为一维数组，内容为从 0 到 9，抽取出所有奇数。
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# 输入数组}
+\NormalTok{arr }\OperatorTok{=}\NormalTok{ np.array([}\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{3}\NormalTok{, }\DecValTok{4}\NormalTok{, }\DecValTok{5}\NormalTok{, }\DecValTok{6}\NormalTok{, }\DecValTok{7}\NormalTok{, }\DecValTok{8}\NormalTok{, }\DecValTok{9}\NormalTok{])}
+\end{Highlighting}
+\end{Shaded}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}4}]:} \PY{n}{arr} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{,} \PY{l+m+mi}{4}\PY{p}{,} \PY{l+m+mi}{5}\PY{p}{,} \PY{l+m+mi}{6}\PY{p}{,} \PY{l+m+mi}{7}\PY{p}{,} \PY{l+m+mi}{8}\PY{p}{,} \PY{l+m+mi}{9}\PY{p}{]}\PY{p}{)}
+        \PY{n}{arr}\PY{p}{[}\PY{n}{arr} \PY{o}{\PYZpc{}} \PY{l+m+mi}{2} \PY{o}{==} \PY{l+m+mi}{1}\PY{p}{]}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}4}]:} array([1, 3, 5, 7, 9])
+\end{Verbatim}
+            
+    \subsubsection{挑战 5
+：按要求修改数组中的元素（原地修改）}\label{ux6311ux6218-5-ux6309ux8981ux6c42ux4feeux6539ux6570ux7ec4ux4e2dux7684ux5143ux7d20ux539fux5730ux4feeux6539}
+
+要求：原数组为一维数组，内容为从 0 到 9，将所有奇数原地修改为 -1。
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# 输入数组}
+\NormalTok{arr }\OperatorTok{=}\NormalTok{ np.array([}\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{3}\NormalTok{, }\DecValTok{4}\NormalTok{, }\DecValTok{5}\NormalTok{, }\DecValTok{6}\NormalTok{, }\DecValTok{7}\NormalTok{, }\DecValTok{8}\NormalTok{, }\DecValTok{9}\NormalTok{])}
+\end{Highlighting}
+\end{Shaded}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}5}]:} \PY{n}{arr} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{,} \PY{l+m+mi}{4}\PY{p}{,} \PY{l+m+mi}{5}\PY{p}{,} \PY{l+m+mi}{6}\PY{p}{,} \PY{l+m+mi}{7}\PY{p}{,} \PY{l+m+mi}{8}\PY{p}{,} \PY{l+m+mi}{9}\PY{p}{]}\PY{p}{)}
+        \PY{n}{arr}\PY{p}{[}\PY{n}{arr} \PY{o}{\PYZpc{}} \PY{l+m+mi}{2} \PY{o}{==} \PY{l+m+mi}{1}\PY{p}{]} \PY{o}{=} \PY{o}{\PYZhy{}}\PY{l+m+mi}{1}
+        \PY{n}{arr}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}5}]:} array([ 0, -1,  2, -1,  4, -1,  6, -1,  8, -1])
+\end{Verbatim}
+            
+    \subsubsection{挑战 6
+：按要求修改数组中的元素（返回新数组）}\label{ux6311ux6218-6-ux6309ux8981ux6c42ux4feeux6539ux6570ux7ec4ux4e2dux7684ux5143ux7d20ux8fd4ux56deux65b0ux6570ux7ec4}
+
+要求：原数组为一维数组，内容为从 0 到
+9，返回一个该数组的拷贝，其中奇数修改为 -1。
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}6}]:} \PY{n}{arr} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{arange}\PY{p}{(}\PY{l+m+mi}{10}\PY{p}{)}
+        \PY{n}{out} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{where}\PY{p}{(}\PY{n}{arr} \PY{o}{\PYZpc{}} \PY{l+m+mi}{2} \PY{o}{==} \PY{l+m+mi}{1}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{arr}\PY{p}{)}
+        \PY{c+c1}{\PYZsh{} where函数能批量替换数组的元素；第一个参数为替换的条件，成立替换为第一个元素，否则替换为第二个元素}
+        \PY{n}{out}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}6}]:} array([ 0, -1,  2, -1,  4, -1,  6, -1,  8, -1])
+\end{Verbatim}
+            
+    \subsubsection{挑战 7
+：修改数组的形状}\label{ux6311ux6218-7-ux4feeux6539ux6570ux7ec4ux7684ux5f62ux72b6}
+
+要求：将给定的一维数组 arr 转为为二维数组，其中新数组的行数为2。
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}7}]:} \PY{n}{arr} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{arange}\PY{p}{(}\PY{l+m+mi}{10}\PY{p}{)}
+        \PY{n}{arr}\PY{o}{.}\PY{n}{reshape}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{)}  
+        \PY{c+c1}{\PYZsh{} \PYZhy{}1 表示自动计算该维度的大小}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}7}]:} array([[0, 1, 2, 3, 4],
+               [5, 6, 7, 8, 9]])
+\end{Verbatim}
+            
+    \subsubsection{挑战 8
+：合并数组（列方向）}\label{ux6311ux6218-8-ux5408ux5e76ux6570ux7ec4ux5217ux65b9ux5411}
+
+要求：将给定数组在列方向上合并。
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# 输入数组}
+\NormalTok{a }\OperatorTok{=}\NormalTok{ np.arange(}\DecValTok{10}\NormalTok{).reshape(}\DecValTok{2}\NormalTok{,}\OperatorTok{-}\DecValTok{1}\NormalTok{)}
+\NormalTok{b }\OperatorTok{=}\NormalTok{ np.repeat(}\DecValTok{1}\NormalTok{, }\DecValTok{10}\NormalTok{).reshape(}\DecValTok{2}\NormalTok{,}\OperatorTok{-}\DecValTok{1}\NormalTok{)}
+
+\NormalTok{a }\OperatorTok{=}\NormalTok{ np.arange(}\DecValTok{10}\NormalTok{).reshape(}\DecValTok{2}\NormalTok{,}\OperatorTok{-}\DecValTok{1}\NormalTok{)}
+\NormalTok{b }\OperatorTok{=}\NormalTok{ np.repeat(}\DecValTok{1}\NormalTok{, }\DecValTok{10}\NormalTok{).reshape(}\DecValTok{2}\NormalTok{,}\OperatorTok{-}\DecValTok{1}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}8}]:} \PY{n}{a} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{arange}\PY{p}{(}\PY{l+m+mi}{10}\PY{p}{)}\PY{o}{.}\PY{n}{reshape}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{,}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{)}
+        \PY{n}{b} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{repeat}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{10}\PY{p}{)}\PY{o}{.}\PY{n}{reshape}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{,}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{)}
+        \PY{c+c1}{\PYZsh{} repeat能对数组中的元素连续复制; 第一个参数为值，第二个参数为复制的次数}
+        
+        \PY{c+c1}{\PYZsh{} 答案 1:}
+        \PY{n}{r1} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{concatenate}\PY{p}{(}\PY{p}{[}\PY{n}{a}\PY{p}{,} \PY{n}{b}\PY{p}{]}\PY{p}{,}\PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}
+        \PY{c+c1}{\PYZsh{} concatenate函数用来连接两个矩阵，第一个参数为两个矩阵 ，第二个参数确定是按列拼接还是按行拼接(默认为0 按列拼接)}
+        \PY{c+c1}{\PYZsh{} hstack相当于concatenate第二个参数取1 vstack相当于concatenate第二个参数取0 dstack相当于concatenate第三个参数取2}
+        
+        \PY{c+c1}{\PYZsh{} 答案 2:}
+        \PY{n}{r2} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{hstack}\PY{p}{(}\PY{p}{[}\PY{n}{a}\PY{p}{,} \PY{n}{b}\PY{p}{]}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} 答案 3:}
+        \PY{n}{r3} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{r\PYZus{}}\PY{p}{[}\PY{n}{a}\PY{p}{,} \PY{n}{b}\PY{p}{]}
+        
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{a矩阵打印}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{n}{a}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{b矩阵打印}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{n}{b}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{r1打印}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{n}{r1}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{r2打印}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{n}{r2}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{r3打印}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{n}{r3}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+a矩阵打印
+[[0 1 2 3 4]
+ [5 6 7 8 9]]
+b矩阵打印
+[[1 1 1 1 1]
+ [1 1 1 1 1]]
+r1打印
+[[0 1 2 3 4 1 1 1 1 1]
+ [5 6 7 8 9 1 1 1 1 1]]
+r2打印
+[[0 1 2 3 4 1 1 1 1 1]
+ [5 6 7 8 9 1 1 1 1 1]]
+r3打印
+[[0 1 2 3 4]
+ [5 6 7 8 9]
+ [1 1 1 1 1]
+ [1 1 1 1 1]]
+
+    \end{Verbatim}
+
+    \subsubsection{挑战 9
+：合并数组（水平方向）}\label{ux6311ux6218-9-ux5408ux5e76ux6570ux7ec4ux6c34ux5e73ux65b9ux5411}
+
+要求：将给定数组在水平方向上合并。
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# 输入数组}
+\NormalTok{a }\OperatorTok{=}\NormalTok{ np.arange(}\DecValTok{10}\NormalTok{).reshape(}\DecValTok{2}\NormalTok{,}\OperatorTok{-}\DecValTok{1}\NormalTok{)}
+\NormalTok{b }\OperatorTok{=}\NormalTok{ np.repeat(}\DecValTok{1}\NormalTok{, }\DecValTok{10}\NormalTok{).reshape(}\DecValTok{2}\NormalTok{,}\OperatorTok{-}\DecValTok{1}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}9}]:} \PY{c+c1}{\PYZsh{} 输入数组}
+        \PY{n}{a} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{arange}\PY{p}{(}\PY{l+m+mi}{10}\PY{p}{)}\PY{o}{.}\PY{n}{reshape}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{,}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{)}
+        \PY{n}{b} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{repeat}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{10}\PY{p}{)}\PY{o}{.}\PY{n}{reshape}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{,}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{)}
+        
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{a矩阵打印}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{n}{a}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{b矩阵打印}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{n}{b}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} 答案 1:}
+        \PY{n}{np}\PY{o}{.}\PY{n}{concatenate}\PY{p}{(}\PY{p}{[}\PY{n}{a}\PY{p}{,} \PY{n}{b}\PY{p}{]}\PY{p}{,} \PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}
+        \PY{c+c1}{\PYZsh{} 答案 2:}
+        \PY{n}{np}\PY{o}{.}\PY{n}{hstack}\PY{p}{(}\PY{p}{[}\PY{n}{a}\PY{p}{,} \PY{n}{b}\PY{p}{]}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} 答案 3:}
+        \PY{n}{np}\PY{o}{.}\PY{n}{c\PYZus{}}\PY{p}{[}\PY{n}{a}\PY{p}{,} \PY{n}{b}\PY{p}{]}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+a矩阵打印
+[[0 1 2 3 4]
+ [5 6 7 8 9]]
+b矩阵打印
+[[1 1 1 1 1]
+ [1 1 1 1 1]]
+
+    \end{Verbatim}
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}9}]:} array([[0, 1, 2, 3, 4, 1, 1, 1, 1, 1],
+               [5, 6, 7, 8, 9, 1, 1, 1, 1, 1]])
+\end{Verbatim}
+            
+    \subsubsection{挑战 10
+：创建数组（进阶）}\label{ux6311ux6218-10-ux521bux5efaux6570ux7ec4ux8fdbux9636}
+
+要求：不用硬编码，使用内置方法，从给定数组 a 生成数组 b。 其中
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# 输入数组}
+\NormalTok{a }\OperatorTok{=}\NormalTok{ np.array([}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{])}
+\NormalTok{b }\OperatorTok{=}\NormalTok{ np.array([}\DecValTok{1}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{3}\NormalTok{, }\DecValTok{3}\NormalTok{, }\DecValTok{3}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{3}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{3}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{3}\NormalTok{])}
+\end{Highlighting}
+\end{Shaded}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}10}]:} \PY{n}{a} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{]}\PY{p}{)}
+         \PY{n}{b} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{]}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{} 答案}
+         \PY{n}{np}\PY{o}{.}\PY{n}{r\PYZus{}}\PY{p}{[}\PY{n}{np}\PY{o}{.}\PY{n}{repeat}\PY{p}{(}\PY{n}{a}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{)}\PY{p}{,} \PY{n}{np}\PY{o}{.}\PY{n}{tile}\PY{p}{(}\PY{n}{a}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{)}\PY{p}{]}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}10}]:} array([1, 1, 1, 2, 2, 2, 3, 3, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3])
+\end{Verbatim}
+            
+    \subsubsection{挑战 11
+：返回公共元素}\label{ux6311ux6218-11-ux8fd4ux56deux516cux5171ux5143ux7d20}
+
+要求：给定两个数组 a、b，要求返回这两个数组元素的交集。
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# 输入数组}
+\NormalTok{a }\OperatorTok{=}\NormalTok{ np.array([}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{4}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{4}\NormalTok{,}\DecValTok{5}\NormalTok{,}\DecValTok{6}\NormalTok{])}
+\NormalTok{b }\OperatorTok{=}\NormalTok{ np.array([}\DecValTok{7}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{10}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{7}\NormalTok{,}\DecValTok{4}\NormalTok{,}\DecValTok{9}\NormalTok{,}\DecValTok{4}\NormalTok{,}\DecValTok{9}\NormalTok{,}\DecValTok{8}\NormalTok{])}
+\end{Highlighting}
+\end{Shaded}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}11}]:} \PY{n}{a} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{,}\PY{l+m+mi}{4}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{,}\PY{l+m+mi}{4}\PY{p}{,}\PY{l+m+mi}{5}\PY{p}{,}\PY{l+m+mi}{6}\PY{p}{]}\PY{p}{)}
+         \PY{n}{b} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{7}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{,}\PY{l+m+mi}{10}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{,}\PY{l+m+mi}{7}\PY{p}{,}\PY{l+m+mi}{4}\PY{p}{,}\PY{l+m+mi}{9}\PY{p}{,}\PY{l+m+mi}{4}\PY{p}{,}\PY{l+m+mi}{9}\PY{p}{,}\PY{l+m+mi}{8}\PY{p}{]}\PY{p}{)}
+         
+         \PY{l+s+sd}{\PYZsq{}\PYZsq{}\PYZsq{}}
+         \PY{l+s+sd}{np.intersect1d( ndarray1, ndarray2)}
+         \PY{l+s+sd}{返回二者的交集并排序}
+         \PY{l+s+sd}{np.union1d( ndarray1, ndarray2)}
+         \PY{l+s+sd}{返回二者的并集并排序}
+         \PY{l+s+sd}{np.setdiff1d( ndarray1, ndarray2)}
+         \PY{l+s+sd}{返回二者的差}
+         \PY{l+s+sd}{np.setxor1d( ndarray1, ndarray2)}
+         \PY{l+s+sd}{返回二者的对称差}
+         \PY{l+s+sd}{\PYZsq{}\PYZsq{}\PYZsq{}}
+         \PY{n}{np}\PY{o}{.}\PY{n}{intersect1d}\PY{p}{(}\PY{n}{a}\PY{p}{,}\PY{n}{b}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}11}]:} array([2, 4])
+\end{Verbatim}
+            
+    \subsubsection{挑战 12
+：删除元素}\label{ux6311ux6218-12-ux5220ux9664ux5143ux7d20}
+
+要求：给定两个数组 a、b，从数组 a 中删除 b 中出现的元素。
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# 输入数组}
+\NormalTok{a }\OperatorTok{=}\NormalTok{ np.array([}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{4}\NormalTok{,}\DecValTok{5}\NormalTok{])}
+\NormalTok{b }\OperatorTok{=}\NormalTok{ np.array([}\DecValTok{5}\NormalTok{,}\DecValTok{6}\NormalTok{,}\DecValTok{7}\NormalTok{,}\DecValTok{8}\NormalTok{,}\DecValTok{9}\NormalTok{])}
+\end{Highlighting}
+\end{Shaded}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}12}]:} \PY{n}{a} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{,}\PY{l+m+mi}{4}\PY{p}{,}\PY{l+m+mi}{5}\PY{p}{]}\PY{p}{)}
+         \PY{n}{b} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{5}\PY{p}{,}\PY{l+m+mi}{6}\PY{p}{,}\PY{l+m+mi}{7}\PY{p}{,}\PY{l+m+mi}{8}\PY{p}{,}\PY{l+m+mi}{9}\PY{p}{]}\PY{p}{)}
+         \PY{n}{np}\PY{o}{.}\PY{n}{setdiff1d}\PY{p}{(}\PY{n}{a}\PY{p}{,}\PY{n}{b}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}12}]:} array([1, 2, 3, 4])
+\end{Verbatim}
+            
+    \subsubsection{挑战 13
+：找出相同元素}\label{ux6311ux6218-13-ux627eux51faux76f8ux540cux5143ux7d20}
+
+要求：给定两个数组 a、b，返回两数组中相同元素的下标。
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# 输入数组}
+\NormalTok{a }\OperatorTok{=}\NormalTok{ np.array([}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{4}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{4}\NormalTok{,}\DecValTok{5}\NormalTok{,}\DecValTok{6}\NormalTok{])}
+\NormalTok{b }\OperatorTok{=}\NormalTok{ np.array([}\DecValTok{7}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{10}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{7}\NormalTok{,}\DecValTok{4}\NormalTok{,}\DecValTok{9}\NormalTok{,}\DecValTok{4}\NormalTok{,}\DecValTok{9}\NormalTok{,}\DecValTok{8}\NormalTok{])}
+\end{Highlighting}
+\end{Shaded}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}13}]:} \PY{n}{a} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{,}\PY{l+m+mi}{4}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{,}\PY{l+m+mi}{4}\PY{p}{,}\PY{l+m+mi}{5}\PY{p}{,}\PY{l+m+mi}{6}\PY{p}{]}\PY{p}{)}
+         \PY{n}{b} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{7}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{,}\PY{l+m+mi}{10}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{,}\PY{l+m+mi}{7}\PY{p}{,}\PY{l+m+mi}{4}\PY{p}{,}\PY{l+m+mi}{9}\PY{p}{,}\PY{l+m+mi}{4}\PY{p}{,}\PY{l+m+mi}{9}\PY{p}{,}\PY{l+m+mi}{8}\PY{p}{]}\PY{p}{)}
+         
+         \PY{n}{np}\PY{o}{.}\PY{n}{where}\PY{p}{(}\PY{n}{a} \PY{o}{==} \PY{n}{b}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}13}]:} (array([1, 3, 5, 7]),)
+\end{Verbatim}
+            
+    \subsubsection{挑战 14
+：按要求取出元素}\label{ux6311ux6218-14-ux6309ux8981ux6c42ux53d6ux51faux5143ux7d20}
+
+要求：从数组 a 中取出大于等于 5 且小于等于 10 的元素。
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# 输入数组}
+\NormalTok{a }\OperatorTok{=}\NormalTok{ np.arange(}\DecValTok{15}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}14}]:} \PY{n}{a} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{arange}\PY{p}{(}\PY{l+m+mi}{15}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{} 答案 1:}
+         \PY{n}{index} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{where}\PY{p}{(}\PY{p}{(}\PY{n}{a} \PY{o}{\PYZgt{}}\PY{o}{=} \PY{l+m+mi}{5}\PY{p}{)} \PY{o}{\PYZam{}} \PY{p}{(}\PY{n}{a} \PY{o}{\PYZlt{}}\PY{o}{=} \PY{l+m+mi}{10}\PY{p}{)}\PY{p}{)}
+         \PY{n}{a}\PY{p}{[}\PY{n}{index}\PY{p}{]}
+         
+         \PY{c+c1}{\PYZsh{} 答案 2:}
+         \PY{n}{index} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{where}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{logical\PYZus{}and}\PY{p}{(}\PY{n}{a}\PY{o}{\PYZgt{}}\PY{o}{=}\PY{l+m+mi}{5}\PY{p}{,} \PY{n}{a}\PY{o}{\PYZlt{}}\PY{o}{=}\PY{l+m+mi}{10}\PY{p}{)}\PY{p}{)}
+         \PY{n}{a}\PY{p}{[}\PY{n}{index}\PY{p}{]}
+         
+         \PY{c+c1}{\PYZsh{} 答案 3:}
+         \PY{n}{a}\PY{p}{[}\PY{p}{(}\PY{n}{a} \PY{o}{\PYZgt{}}\PY{o}{=} \PY{l+m+mi}{5}\PY{p}{)} \PY{o}{\PYZam{}} \PY{p}{(}\PY{n}{a} \PY{o}{\PYZlt{}}\PY{o}{=} \PY{l+m+mi}{10}\PY{p}{)}\PY{p}{]}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}14}]:} array([ 5,  6,  7,  8,  9, 10])
+\end{Verbatim}
+            
+    \subsubsection{挑战 15 ：实现 max 的 numpy
+版}\label{ux6311ux6218-15-ux5b9eux73b0-max-ux7684-numpy-ux7248}
+
+要求：给定长度相同的数组 a、b，返回一个新数组，数组上的每一个元素为
+max(a\_i, b\_i)。 若 pair\_max 为满足要求的函数，则对于 a 和
+b，期望输出如下
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# 输入数组}
+\NormalTok{a }\OperatorTok{=}\NormalTok{ np.array([}\DecValTok{5}\NormalTok{, }\DecValTok{7}\NormalTok{, }\DecValTok{9}\NormalTok{, }\DecValTok{8}\NormalTok{, }\DecValTok{6}\NormalTok{, }\DecValTok{4}\NormalTok{, }\DecValTok{5}\NormalTok{])}
+\NormalTok{b }\OperatorTok{=}\NormalTok{ np.array([}\DecValTok{6}\NormalTok{, }\DecValTok{3}\NormalTok{, }\DecValTok{4}\NormalTok{, }\DecValTok{8}\NormalTok{, }\DecValTok{9}\NormalTok{, }\DecValTok{7}\NormalTok{, }\DecValTok{1}\NormalTok{])}
+\NormalTok{pair_max(a, b)}
+\CommentTok{#> 期望输出：array([ 6.,  7.,  9.,  8.,  9.,  7.,  5.])}
+\end{Highlighting}
+\end{Shaded}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}15}]:} \PY{n}{a} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{5}\PY{p}{,} \PY{l+m+mi}{7}\PY{p}{,} \PY{l+m+mi}{9}\PY{p}{,} \PY{l+m+mi}{8}\PY{p}{,} \PY{l+m+mi}{6}\PY{p}{,} \PY{l+m+mi}{4}\PY{p}{,} \PY{l+m+mi}{5}\PY{p}{]}\PY{p}{)}
+         \PY{n}{b} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{6}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{,} \PY{l+m+mi}{4}\PY{p}{,} \PY{l+m+mi}{8}\PY{p}{,} \PY{l+m+mi}{9}\PY{p}{,} \PY{l+m+mi}{7}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{} 答案:}
+         \PY{k}{def} \PY{n+nf}{maxx}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{y}\PY{p}{)}\PY{p}{:}
+             \PY{l+s+sd}{\PYZdq{}\PYZdq{}\PYZdq{}Get the maximum of two items\PYZdq{}\PYZdq{}\PYZdq{}}
+             \PY{k}{if} \PY{n}{x} \PY{o}{\PYZgt{}}\PY{o}{=} \PY{n}{y}\PY{p}{:}
+                 \PY{k}{return} \PY{n}{x}
+             \PY{k}{else}\PY{p}{:}
+                 \PY{k}{return} \PY{n}{y}
+         
+         \PY{n}{pair\PYZus{}max} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{vectorize}\PY{p}{(}\PY{n}{maxx}\PY{p}{,} \PY{n}{otypes}\PY{o}{=}\PY{p}{[}\PY{n+nb}{float}\PY{p}{]}\PY{p}{)}
+         
+         \PY{n}{a} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{5}\PY{p}{,} \PY{l+m+mi}{7}\PY{p}{,} \PY{l+m+mi}{9}\PY{p}{,} \PY{l+m+mi}{8}\PY{p}{,} \PY{l+m+mi}{6}\PY{p}{,} \PY{l+m+mi}{4}\PY{p}{,} \PY{l+m+mi}{5}\PY{p}{]}\PY{p}{)}
+         \PY{n}{b} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{6}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{,} \PY{l+m+mi}{4}\PY{p}{,} \PY{l+m+mi}{8}\PY{p}{,} \PY{l+m+mi}{9}\PY{p}{,} \PY{l+m+mi}{7}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}
+         
+         \PY{n}{pair\PYZus{}max}\PY{p}{(}\PY{n}{a}\PY{p}{,} \PY{n}{b}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}15}]:} array([ 6.,  7.,  9.,  8.,  9.,  7.,  5.])
+\end{Verbatim}
+            
+    \subsubsection{挑战 16
+：交换二维数组的列}\label{ux6311ux6218-16-ux4ea4ux6362ux4e8cux7ef4ux6570ux7ec4ux7684ux5217}
+
+要求：交换数组 arr 的第一第二列。
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# 输入数组}
+\NormalTok{arr }\OperatorTok{=}\NormalTok{ np.arange(}\DecValTok{9}\NormalTok{).reshape(}\DecValTok{3}\NormalTok{,}\DecValTok{3}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}16}]:} \PY{n}{arr} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{arange}\PY{p}{(}\PY{l+m+mi}{9}\PY{p}{)}\PY{o}{.}\PY{n}{reshape}\PY{p}{(}\PY{l+m+mi}{3}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{} 答案:}
+         \PY{n}{arr}\PY{p}{[}\PY{p}{:}\PY{p}{,} \PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{]}\PY{p}{]}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}16}]:} array([[1, 0, 2],
+                [4, 3, 5],
+                [7, 6, 8]])
+\end{Verbatim}
+            
+    \subsubsection{挑战 17
+：交换二维数组的行}\label{ux6311ux6218-17-ux4ea4ux6362ux4e8cux7ef4ux6570ux7ec4ux7684ux884c}
+
+要求：交换二维数组 arr 的第一第二行。
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# 输入数组}
+\NormalTok{arr }\OperatorTok{=}\NormalTok{ np.arange(}\DecValTok{9}\NormalTok{).reshape(}\DecValTok{3}\NormalTok{,}\DecValTok{3}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}17}]:} \PY{n}{arr} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{arange}\PY{p}{(}\PY{l+m+mi}{9}\PY{p}{)}\PY{o}{.}\PY{n}{reshape}\PY{p}{(}\PY{l+m+mi}{3}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{)}
+         \PY{c+c1}{\PYZsh{} 答案}
+         \PY{n}{arr}\PY{p}{[}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{]}\PY{p}{,} \PY{p}{:}\PY{p}{]}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}17}]:} array([[3, 4, 5],
+                [0, 1, 2],
+                [6, 7, 8]])
+\end{Verbatim}
+            
+    \subsubsection{挑战 18
+：将一个数组按行反序}\label{ux6311ux6218-18-ux5c06ux4e00ux4e2aux6570ux7ec4ux6309ux884cux53cdux5e8f}
+
+要求：数组 arr 为二维数组，将其行反序。
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# 输入数组}
+\NormalTok{arr }\OperatorTok{=}\NormalTok{ np.arange(}\DecValTok{9}\NormalTok{).reshape(}\DecValTok{3}\NormalTok{,}\DecValTok{3}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}18}]:} \PY{n}{arr} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{arange}\PY{p}{(}\PY{l+m+mi}{9}\PY{p}{)}\PY{o}{.}\PY{n}{reshape}\PY{p}{(}\PY{l+m+mi}{3}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{} 答案:}
+         \PY{n}{arr}\PY{p}{[}\PY{p}{:}\PY{p}{:}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}18}]:} array([[6, 7, 8],
+                [3, 4, 5],
+                [0, 1, 2]])
+\end{Verbatim}
+            
+    \subsubsection{挑战 19
+：将一个数组按列反序}\label{ux6311ux6218-19-ux5c06ux4e00ux4e2aux6570ux7ec4ux6309ux5217ux53cdux5e8f}
+
+要求：数组 arr 为二维数组，将其列反序。
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# 输入数组}
+\NormalTok{arr }\OperatorTok{=}\NormalTok{ np.arange(}\DecValTok{9}\NormalTok{).reshape(}\DecValTok{3}\NormalTok{,}\DecValTok{3}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}19}]:} \PY{n}{arr} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{arange}\PY{p}{(}\PY{l+m+mi}{9}\PY{p}{)}\PY{o}{.}\PY{n}{reshape}\PY{p}{(}\PY{l+m+mi}{3}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{} 答案:}
+         \PY{n}{arr}\PY{p}{[}\PY{p}{:}\PY{p}{,} \PY{p}{:}\PY{p}{:}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}19}]:} array([[2, 1, 0],
+                [5, 4, 3],
+                [8, 7, 6]])
+\end{Verbatim}
+            
+    \subsubsection{挑战 20
+：创建随机数组}\label{ux6311ux6218-20-ux521bux5efaux968fux673aux6570ux7ec4}
+
+要求：创建一个 5*3 的数组，数组元素为 5 到 10 的随机浮点数。
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}20}]:} \PY{c+c1}{\PYZsh{} 答案 1:}
+         \PY{n}{rand\PYZus{}arr} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{random}\PY{o}{.}\PY{n}{randint}\PY{p}{(}\PY{n}{low}\PY{o}{=}\PY{l+m+mi}{5}\PY{p}{,} \PY{n}{high}\PY{o}{=}\PY{l+m+mi}{10}\PY{p}{,} \PY{n}{size}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{5}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{)}\PY{p}{)} \PY{o}{+} \PY{n}{np}\PY{o}{.}\PY{n}{random}\PY{o}{.}\PY{n}{random}\PY{p}{(}\PY{p}{(}\PY{l+m+mi}{5}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{)}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{} 答案 2:}
+         \PY{n}{rand\PYZus{}arr} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{random}\PY{o}{.}\PY{n}{uniform}\PY{p}{(}\PY{l+m+mi}{5}\PY{p}{,}\PY{l+m+mi}{10}\PY{p}{,} \PY{n}{size}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{5}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{)}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{rand\PYZus{}arr}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+[[ 8.51572023  9.43701914  5.33778609]
+ [ 7.85916219  6.38096813  9.92712505]
+ [ 5.51979229  7.85928664  7.49294511]
+ [ 6.59099471  5.77526055  6.16361369]
+ [ 6.44329631  5.40663434  9.05989878]]
+
+    \end{Verbatim}
+
+    \subsubsection{挑战 21
+：按要求打印数组（一）}\label{ux6311ux6218-21-ux6309ux8981ux6c42ux6253ux5370ux6570ux7ec4ux4e00}
+
+要求：rand\_arr 数组元素输出时保留 3 位小数。
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# 输入数组}
+\NormalTok{rand_arr }\OperatorTok{=}\NormalTok{ np.random.random([}\DecValTok{5}\NormalTok{,}\DecValTok{3}\NormalTok{])}
+\end{Highlighting}
+\end{Shaded}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}21}]:} \PY{n}{rand\PYZus{}arr} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{random}\PY{o}{.}\PY{n}{random}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{5}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{]}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{} 答案}
+         \PY{n}{np}\PY{o}{.}\PY{n}{set\PYZus{}printoptions}\PY{p}{(}\PY{n}{precision}\PY{o}{=}\PY{l+m+mi}{3}\PY{p}{)}
+         \PY{n}{rand\PYZus{}arr}\PY{p}{[}\PY{p}{:}\PY{l+m+mi}{4}\PY{p}{]}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}21}]:} array([[ 0.988,  0.069,  0.263],
+                [ 0.67 ,  0.38 ,  0.761],
+                [ 0.077,  0.631,  0.05 ],
+                [ 0.315,  0.87 ,  0.436]])
+\end{Verbatim}
+            
+    \subsubsection{挑战 22
+：按要求打印数组（二）}\label{ux6311ux6218-22-ux6309ux8981ux6c42ux6253ux5370ux6570ux7ec4ux4e8c}
+
+要求：rand\_arr
+数组为小数，使用小数点的形式来打印，而不是科学记数法（如1e-4）。
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# 输入数组}
+
+\NormalTok{np.random.seed(}\DecValTok{100}\NormalTok{)}
+\NormalTok{rand_arr }\OperatorTok{=}\NormalTok{ np.random.random([}\DecValTok{3}\NormalTok{,}\DecValTok{3}\NormalTok{])}\OperatorTok{/}\FloatTok{1e3}
+\NormalTok{rand_arr}
+
+\CommentTok{#> 期望输出： array([[  5.434049e-04,   2.783694e-04,   4.245176e-04],}
+\CommentTok{#>                 [  8.447761e-04,   4.718856e-06,   1.215691e-04],}
+\CommentTok{#>                 [  6.707491e-04,   8.258528e-04,   1.367066e-04]])}
+\end{Highlighting}
+\end{Shaded}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}22}]:} \PY{n}{np}\PY{o}{.}\PY{n}{random}\PY{o}{.}\PY{n}{seed}\PY{p}{(}\PY{l+m+mi}{100}\PY{p}{)}
+         \PY{n}{rand\PYZus{}arr} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{random}\PY{o}{.}\PY{n}{random}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{3}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{]}\PY{p}{)}\PY{o}{/}\PY{l+m+mf}{1e3}
+         
+         \PY{c+c1}{\PYZsh{} 答案:}
+         \PY{n}{np}\PY{o}{.}\PY{n}{set\PYZus{}printoptions}\PY{p}{(}\PY{n}{suppress}\PY{o}{=}\PY{k+kc}{True}\PY{p}{,} \PY{n}{precision}\PY{o}{=}\PY{l+m+mi}{6}\PY{p}{)}  \PY{c+c1}{\PYZsh{} precision 是可选项}
+         \PY{n}{rand\PYZus{}arr}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}22}]:} array([[ 0.000543,  0.000278,  0.000425],
+                [ 0.000845,  0.000005,  0.000122],
+                [ 0.000671,  0.000826,  0.000137]])
+\end{Verbatim}
+            
+    \subsubsection{挑战 23
+：按要求打印数组（三）}\label{ux6311ux6218-23-ux6309ux8981ux6c42ux6253ux5370ux6570ux7ec4ux4e09}
+
+要求：打印 a 时省略中间元素，限制显示数组元素的个数为 6。
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# 输入数组}
+\NormalTok{a }\OperatorTok{=}\NormalTok{ np.arange(}\DecValTok{15}\NormalTok{)}
+\CommentTok{#> 原输出 ：[ 0,  1,  2,  3,  4,  5,  6,  7,  8,  9, 10, 11, 12, 13, 14]}
+\CommentTok{#> 目标输出：[ 0  1  2 ..., 12 13 14]}
+\end{Highlighting}
+\end{Shaded}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}23}]:} \PY{n}{a} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{arange}\PY{p}{(}\PY{l+m+mi}{15}\PY{p}{)}
+         \PY{c+c1}{\PYZsh{} 答案:}
+         \PY{n}{np}\PY{o}{.}\PY{n}{set\PYZus{}printoptions}\PY{p}{(}\PY{n}{threshold}\PY{o}{=}\PY{l+m+mi}{6}\PY{p}{)}
+         \PY{n}{a} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{arange}\PY{p}{(}\PY{l+m+mi}{15}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{a}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{} 恢复为默认设置，因为后面的问题需要打印更多数据}
+         \PY{n}{np}\PY{o}{.}\PY{n}{set\PYZus{}printoptions}\PY{p}{(}\PY{n}{threshold}\PY{o}{=}\PY{n}{np}\PY{o}{.}\PY{n}{nan}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+[ 0  1  2 {\ldots}, 12 13 14]
+
+    \end{Verbatim}
+
+    \subsubsection{挑战 24
+：加载特殊矩阵}\label{ux6311ux6218-24-ux52a0ux8f7dux7279ux6b8aux77e9ux9635}
+
+要求：著名的 iris
+数据集是包含兰花属性和种类的数据集，其中每行属性有数字和文字，用 numpy
+来加载他们。
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}24}]:} \PY{c+c1}{\PYZsh{} 答案}
+         \PY{n}{url} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{https://archive.ics.uci.edu/ml/machine\PYZhy{}learning\PYZhy{}databases/iris/iris.data}\PY{l+s+s1}{\PYZsq{}}
+         \PY{n}{iris} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{genfromtxt}\PY{p}{(}\PY{n}{url}\PY{p}{,} \PY{n}{delimiter}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{,}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{dtype}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{object}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{names} \PY{o}{=} \PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{sepallength}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{sepalwidth}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{petallength}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{petalwidth}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{species}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{} 输出前三行}
+         \PY{n}{iris}\PY{p}{[}\PY{p}{:}\PY{l+m+mi}{3}\PY{p}{]}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}24}]:} array([[b'5.1', b'3.5', b'1.4', b'0.2', b'Iris-setosa'],
+                [b'4.9', b'3.0', b'1.4', b'0.2', b'Iris-setosa'],
+                [b'4.7', b'3.2', b'1.3', b'0.2', b'Iris-setosa']], dtype=object)
+\end{Verbatim}
+            
+    \subsubsection{挑战 25
+：重定义数组的元素范围}\label{ux6311ux6218-25-ux91cdux5b9aux4e49ux6570ux7ec4ux7684ux5143ux7d20ux8303ux56f4}
+
+要求：将 iris 数组集的第一个列的数据范围缩放为 0 到 1。
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# 输入数组}
+\NormalTok{url }\OperatorTok{=} \StringTok{'https://archive.ics.uci.edu/ml/machine-learning-databases/iris/iris.data'}
+\NormalTok{sepallength }\OperatorTok{=}\NormalTok{ np.genfromtxt(url, delimiter}\OperatorTok{=}\StringTok{','}\NormalTok{, dtype}\OperatorTok{=}\StringTok{'float'}\NormalTok{, usecols}\OperatorTok{=}\NormalTok{[}\DecValTok{0}\NormalTok{])}
+\end{Highlighting}
+\end{Shaded}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}25}]:} \PY{n}{url} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{https://archive.ics.uci.edu/ml/machine\PYZhy{}learning\PYZhy{}databases/iris/iris.data}\PY{l+s+s1}{\PYZsq{}}
+         \PY{n}{sepallength} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{genfromtxt}\PY{p}{(}\PY{n}{url}\PY{p}{,} \PY{n}{delimiter}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{,}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{dtype}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{float}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{usecols}\PY{o}{=}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{} 答案 1：}
+         \PY{n}{Smax}\PY{p}{,} \PY{n}{Smin} \PY{o}{=} \PY{n}{sepallength}\PY{o}{.}\PY{n}{max}\PY{p}{(}\PY{p}{)}\PY{p}{,} \PY{n}{sepallength}\PY{o}{.}\PY{n}{min}\PY{p}{(}\PY{p}{)}
+         \PY{n}{S} \PY{o}{=} \PY{p}{(}\PY{n}{sepallength} \PY{o}{\PYZhy{}} \PY{n}{Smin}\PY{p}{)}\PY{o}{/}\PY{p}{(}\PY{n}{Smax} \PY{o}{\PYZhy{}} \PY{n}{Smin}\PY{p}{)}
+         \PY{c+c1}{\PYZsh{} 答案 2：}
+         \PY{n}{S} \PY{o}{=} \PY{p}{(}\PY{n}{sepallength} \PY{o}{\PYZhy{}} \PY{n}{Smin}\PY{p}{)}\PY{o}{/}\PY{n}{sepallength}\PY{o}{.}\PY{n}{ptp}\PY{p}{(}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{S}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+[ 0.222222  0.166667  0.111111  0.083333  0.194444  0.305556  0.083333
+  0.194444  0.027778  0.166667  0.305556  0.138889  0.138889  0.        0.416667
+  0.388889  0.305556  0.222222  0.388889  0.222222  0.305556  0.222222
+  0.083333  0.222222  0.138889  0.194444  0.194444  0.25      0.25
+  0.111111  0.138889  0.305556  0.25      0.333333  0.166667  0.194444
+  0.333333  0.166667  0.027778  0.222222  0.194444  0.055556  0.027778
+  0.194444  0.222222  0.138889  0.222222  0.083333  0.277778  0.194444
+  0.75      0.583333  0.722222  0.333333  0.611111  0.388889  0.555556
+  0.166667  0.638889  0.25      0.194444  0.444444  0.472222  0.5       0.361111
+  0.666667  0.361111  0.416667  0.527778  0.361111  0.444444  0.5       0.555556
+  0.5       0.583333  0.638889  0.694444  0.666667  0.472222  0.388889
+  0.333333  0.333333  0.416667  0.472222  0.305556  0.472222  0.666667
+  0.555556  0.361111  0.333333  0.333333  0.5       0.416667  0.194444
+  0.361111  0.388889  0.388889  0.527778  0.222222  0.388889  0.555556
+  0.416667  0.777778  0.555556  0.611111  0.916667  0.166667  0.833333
+  0.666667  0.805556  0.611111  0.583333  0.694444  0.388889  0.416667
+  0.583333  0.611111  0.944444  0.944444  0.472222  0.722222  0.361111
+  0.944444  0.555556  0.666667  0.805556  0.527778  0.5       0.583333
+  0.805556  0.861111  1.        0.583333  0.555556  0.5       0.944444
+  0.555556  0.583333  0.472222  0.722222  0.666667  0.722222  0.416667
+  0.694444  0.666667  0.666667  0.555556  0.611111  0.527778  0.444444]
+
+    \end{Verbatim}
+
+    \subsubsection{挑战 26
+：根据百分比大小返回元素}\label{ux6311ux6218-26-ux6839ux636eux767eux5206ux6bd4ux5927ux5c0fux8fd4ux56deux5143ux7d20}
+
+要求：返回数组中按从小到大排序，位置为 5\% 和 95\% 的数。
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# 输入数组}
+\NormalTok{url }\OperatorTok{=} \StringTok{'https://archive.ics.uci.edu/ml/machine-learning-databases/iris/iris.data'}
+\NormalTok{sepallength }\OperatorTok{=}\NormalTok{ np.genfromtxt(url, delimiter}\OperatorTok{=}\StringTok{','}\NormalTok{, dtype}\OperatorTok{=}\StringTok{'float'}\NormalTok{, usecols}\OperatorTok{=}\NormalTok{[}\DecValTok{0}\NormalTok{])}
+\end{Highlighting}
+\end{Shaded}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}26}]:} \PY{c+c1}{\PYZsh{} 答案:}
+         \PY{n}{np}\PY{o}{.}\PY{n}{percentile}\PY{p}{(}\PY{n}{sepallength}\PY{p}{,} \PY{n}{q}\PY{o}{=}\PY{p}{[}\PY{l+m+mi}{5}\PY{p}{,} \PY{l+m+mi}{95}\PY{p}{]}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}26}]:} array([ 4.6  ,  7.255])
+\end{Verbatim}
+            
+    \subsubsection{挑战 27
+：找出数组的缺失值}\label{ux6311ux6218-27-ux627eux51faux6570ux7ec4ux7684ux7f3aux5931ux503c}
+
+要求：数组中有多处缺失值（nan），找出他们的位置。
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# 输入数组}
+\NormalTok{url }\OperatorTok{=} \StringTok{'https://archive.ics.uci.edu/ml/machine-learning-databases/iris/iris.data'}
+\NormalTok{iris_2d }\OperatorTok{=}\NormalTok{ np.genfromtxt(url, delimiter}\OperatorTok{=}\StringTok{','}\NormalTok{, dtype}\OperatorTok{=}\StringTok{'float'}\NormalTok{, usecols}\OperatorTok{=}\NormalTok{[}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{])}
+\NormalTok{iris_2d[np.random.randint(}\DecValTok{150}\NormalTok{, size}\OperatorTok{=}\DecValTok{20}\NormalTok{), np.random.randint(}\DecValTok{4}\NormalTok{, size}\OperatorTok{=}\DecValTok{20}\NormalTok{)] }\OperatorTok{=}\NormalTok{ np.nan}
+\end{Highlighting}
+\end{Shaded}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}27}]:} \PY{n}{url} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{https://archive.ics.uci.edu/ml/machine\PYZhy{}learning\PYZhy{}databases/iris/iris.data}\PY{l+s+s1}{\PYZsq{}}
+         \PY{n}{iris\PYZus{}2d} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{genfromtxt}\PY{p}{(}\PY{n}{url}\PY{p}{,} \PY{n}{delimiter}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{,}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{dtype}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{float}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{usecols}\PY{o}{=}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{]}\PY{p}{)}
+         \PY{n}{iris\PYZus{}2d}\PY{p}{[}\PY{n}{np}\PY{o}{.}\PY{n}{random}\PY{o}{.}\PY{n}{randint}\PY{p}{(}\PY{l+m+mi}{150}\PY{p}{,} \PY{n}{size}\PY{o}{=}\PY{l+m+mi}{20}\PY{p}{)}\PY{p}{,} \PY{n}{np}\PY{o}{.}\PY{n}{random}\PY{o}{.}\PY{n}{randint}\PY{p}{(}\PY{l+m+mi}{4}\PY{p}{,} \PY{n}{size}\PY{o}{=}\PY{l+m+mi}{20}\PY{p}{)}\PY{p}{]} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{nan}
+         
+         \PY{c+c1}{\PYZsh{} 答案:}
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Number of missing values: }\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{np}\PY{o}{.}\PY{n}{isnan}\PY{p}{(}\PY{n}{iris\PYZus{}2d}\PY{p}{[}\PY{p}{:}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Position of missing values: }\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{np}\PY{o}{.}\PY{n}{where}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{isnan}\PY{p}{(}\PY{n}{iris\PYZus{}2d}\PY{p}{[}\PY{p}{:}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Number of missing values: 
+ 2
+Position of missing values: 
+ (array([67, 93]),)
+
+    \end{Verbatim}
+
+    \subsubsection{挑战 28
+：数组缺失值判断}\label{ux6311ux6218-28-ux6570ux7ec4ux7f3aux5931ux503cux5224ux65ad}
+
+要求：返回数组是否具有缺失值。
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# 输入数组}
+\NormalTok{url }\OperatorTok{=} \StringTok{'https://archive.ics.uci.edu/ml/machine-learning-databases/iris/iris.data'}
+\NormalTok{iris_2d }\OperatorTok{=}\NormalTok{ np.genfromtxt(url, delimiter}\OperatorTok{=}\StringTok{','}\NormalTok{, dtype}\OperatorTok{=}\StringTok{'float'}\NormalTok{, usecols}\OperatorTok{=}\NormalTok{[}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{])}
+\end{Highlighting}
+\end{Shaded}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}28}]:} \PY{n}{url} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{https://archive.ics.uci.edu/ml/machine\PYZhy{}learning\PYZhy{}databases/iris/iris.data}\PY{l+s+s1}{\PYZsq{}}
+         \PY{n}{iris\PYZus{}2d} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{genfromtxt}\PY{p}{(}\PY{n}{url}\PY{p}{,} \PY{n}{delimiter}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{,}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{dtype}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{float}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{usecols}\PY{o}{=}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{]}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{} 答案:}
+         \PY{n}{np}\PY{o}{.}\PY{n}{isnan}\PY{p}{(}\PY{n}{iris\PYZus{}2d}\PY{p}{)}\PY{o}{.}\PY{n}{any}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}28}]:} False
+\end{Verbatim}
+            
+    \subsubsection{挑战 29
+：数组缺失值处理}\label{ux6311ux6218-29-ux6570ux7ec4ux7f3aux5931ux503cux5904ux7406}
+
+要求：替换数组中的缺失值为0。
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# 输入数组}
+\NormalTok{url }\OperatorTok{=} \StringTok{'https://archive.ics.uci.edu/ml/machine-learning-databases/iris/iris.data'}
+\NormalTok{iris_2d }\OperatorTok{=}\NormalTok{ np.genfromtxt(url, delimiter}\OperatorTok{=}\StringTok{','}\NormalTok{, dtype}\OperatorTok{=}\StringTok{'float'}\NormalTok{, usecols}\OperatorTok{=}\NormalTok{[}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{])}
+\NormalTok{iris_2d[np.random.randint(}\DecValTok{150}\NormalTok{, size}\OperatorTok{=}\DecValTok{20}\NormalTok{), np.random.randint(}\DecValTok{4}\NormalTok{, size}\OperatorTok{=}\DecValTok{20}\NormalTok{)] }\OperatorTok{=}\NormalTok{ np.nan}
+\end{Highlighting}
+\end{Shaded}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}29}]:} \PY{n}{url} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{https://archive.ics.uci.edu/ml/machine\PYZhy{}learning\PYZhy{}databases/iris/iris.data}\PY{l+s+s1}{\PYZsq{}}
+         \PY{n}{iris\PYZus{}2d} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{genfromtxt}\PY{p}{(}\PY{n}{url}\PY{p}{,} \PY{n}{delimiter}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{,}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{dtype}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{float}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{usecols}\PY{o}{=}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{]}\PY{p}{)}
+         \PY{n}{iris\PYZus{}2d}\PY{p}{[}\PY{n}{np}\PY{o}{.}\PY{n}{random}\PY{o}{.}\PY{n}{randint}\PY{p}{(}\PY{l+m+mi}{150}\PY{p}{,} \PY{n}{size}\PY{o}{=}\PY{l+m+mi}{20}\PY{p}{)}\PY{p}{,} \PY{n}{np}\PY{o}{.}\PY{n}{random}\PY{o}{.}\PY{n}{randint}\PY{p}{(}\PY{l+m+mi}{4}\PY{p}{,} \PY{n}{size}\PY{o}{=}\PY{l+m+mi}{20}\PY{p}{)}\PY{p}{]} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{nan}
+         
+         \PY{c+c1}{\PYZsh{} 答案}
+         \PY{n}{iris\PYZus{}2d}\PY{p}{[}\PY{n}{np}\PY{o}{.}\PY{n}{isnan}\PY{p}{(}\PY{n}{iris\PYZus{}2d}\PY{p}{)}\PY{p}{]} \PY{o}{=} \PY{l+m+mi}{0}
+         \PY{n}{iris\PYZus{}2d}\PY{p}{[}\PY{p}{:}\PY{l+m+mi}{4}\PY{p}{]}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}29}]:} array([[ 5.1,  3.5,  1.4,  0. ],
+                [ 4.9,  3. ,  1.4,  0.2],
+                [ 4.7,  3.2,  1.3,  0.2],
+                [ 4.6,  3.1,  1.5,  0.2]])
+\end{Verbatim}
+            
+    \subsubsection{挑战 30 ：数组的 unique
+元素}\label{ux6311ux6218-30-ux6570ux7ec4ux7684-unique-ux5143ux7d20}
+
+要求：返回数组中出现的所有元素集合
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# 输入数组}
+\NormalTok{url }\OperatorTok{=} \StringTok{'https://archive.ics.uci.edu/ml/machine-learning-databases/iris/iris.data'}
+\NormalTok{iris }\OperatorTok{=}\NormalTok{ np.genfromtxt(url, delimiter}\OperatorTok{=}\StringTok{','}\NormalTok{, dtype}\OperatorTok{=}\StringTok{'object'}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}30}]:} \PY{n}{url} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{https://archive.ics.uci.edu/ml/machine\PYZhy{}learning\PYZhy{}databases/iris/iris.data}\PY{l+s+s1}{\PYZsq{}}
+         \PY{n}{iris} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{genfromtxt}\PY{p}{(}\PY{n}{url}\PY{p}{,} \PY{n}{delimiter}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{,}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{dtype}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{object}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{} 答案:}
+         \PY{n}{species} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}\PY{n}{row}\PY{o}{.}\PY{n}{tolist}\PY{p}{(}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{4}\PY{p}{]} \PY{k}{for} \PY{n}{row} \PY{o+ow}{in} \PY{n}{iris}\PY{p}{]}\PY{p}{)}
+         \PY{n}{np}\PY{o}{.}\PY{n}{unique}\PY{p}{(}\PY{n}{species}\PY{p}{,} \PY{n}{return\PYZus{}counts}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}30}]:} (array([b'Iris-setosa', b'Iris-versicolor', b'Iris-virginica'],
+                dtype='|S15'), array([50, 50, 50]))
+\end{Verbatim}
+            
+    \subsubsection{挑战 31
+：二维数组排序}\label{ux6311ux6218-31-ux4e8cux7ef4ux6570ux7ec4ux6392ux5e8f}
+
+要求：根据第一列排序二维数组
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# 输入数组}
+\NormalTok{url }\OperatorTok{=} \StringTok{'https://archive.ics.uci.edu/ml/machine-learning-databases/iris/iris.data'}
+\NormalTok{iris }\OperatorTok{=}\NormalTok{ np.genfromtxt(url, delimiter}\OperatorTok{=}\StringTok{','}\NormalTok{, dtype}\OperatorTok{=}\StringTok{'object'}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}31}]:} \PY{n}{url} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{https://archive.ics.uci.edu/ml/machine\PYZhy{}learning\PYZhy{}databases/iris/iris.data}\PY{l+s+s1}{\PYZsq{}}
+         \PY{n}{iris} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{genfromtxt}\PY{p}{(}\PY{n}{url}\PY{p}{,} \PY{n}{delimiter}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{,}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{dtype}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{object}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{} 答案:}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{iris}\PY{p}{[}\PY{n}{iris}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{.}\PY{n}{argsort}\PY{p}{(}\PY{p}{)}\PY{p}{]}\PY{p}{[}\PY{p}{:}\PY{l+m+mi}{5}\PY{p}{]}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+[[b'4.3' b'3.0' b'1.1' b'0.1' b'Iris-setosa']
+ [b'4.4' b'3.2' b'1.3' b'0.2' b'Iris-setosa']
+ [b'4.4' b'3.0' b'1.3' b'0.2' b'Iris-setosa']
+ [b'4.4' b'2.9' b'1.4' b'0.2' b'Iris-setosa']
+ [b'4.5' b'2.3' b'1.3' b'0.3' b'Iris-setosa']]
+
+    \end{Verbatim}
+
+    \subsubsection{挑战 32
+：出现最频繁的元素}\label{ux6311ux6218-32-ux51faux73b0ux6700ux9891ux7e41ux7684ux5143ux7d20}
+
+要求：返回数组中出现最多的元素。
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# 输入数组}
+\NormalTok{url }\OperatorTok{=} \StringTok{'https://archive.ics.uci.edu/ml/machine-learning-databases/iris/iris.data'}
+\NormalTok{iris }\OperatorTok{=}\NormalTok{ np.genfromtxt(url, delimiter}\OperatorTok{=}\StringTok{','}\NormalTok{, dtype}\OperatorTok{=}\StringTok{'object'}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}32}]:} \PY{n}{url} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{https://archive.ics.uci.edu/ml/machine\PYZhy{}learning\PYZhy{}databases/iris/iris.data}\PY{l+s+s1}{\PYZsq{}}
+         \PY{n}{iris} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{genfromtxt}\PY{p}{(}\PY{n}{url}\PY{p}{,} \PY{n}{delimiter}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{,}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{dtype}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{object}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{} 答案:}
+         \PY{n}{vals}\PY{p}{,} \PY{n}{counts} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{unique}\PY{p}{(}\PY{n}{iris}\PY{p}{[}\PY{p}{:}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{]}\PY{p}{,} \PY{n}{return\PYZus{}counts}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{vals}\PY{p}{[}\PY{n}{np}\PY{o}{.}\PY{n}{argmax}\PY{p}{(}\PY{n}{counts}\PY{p}{)}\PY{p}{]}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+b'1.5'
+
+    \end{Verbatim}
+
+    \subsubsection{挑战 33
+：找出数组中某元素满足第一次大于某数的下标}\label{ux6311ux6218-33-ux627eux51faux6570ux7ec4ux4e2dux67d0ux5143ux7d20ux6ee1ux8db3ux7b2cux4e00ux6b21ux5927ux4e8eux67d0ux6570ux7684ux4e0bux6807}
+
+要求：在 iris 数据集中，返回第一个元素的下标，满足第4列属性大于1.0。
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# 输入数组}
+\NormalTok{url }\OperatorTok{=} \StringTok{'https://archive.ics.uci.edu/ml/machine-learning-databases/iris/iris.data'}
+\NormalTok{iris }\OperatorTok{=}\NormalTok{ np.genfromtxt(url, delimiter}\OperatorTok{=}\StringTok{','}\NormalTok{, dtype}\OperatorTok{=}\StringTok{'object'}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}33}]:} \PY{n}{url} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{https://archive.ics.uci.edu/ml/machine\PYZhy{}learning\PYZhy{}databases/iris/iris.data}\PY{l+s+s1}{\PYZsq{}}
+         \PY{n}{iris} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{genfromtxt}\PY{p}{(}\PY{n}{url}\PY{p}{,} \PY{n}{delimiter}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{,}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{dtype}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{object}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{} 答案:}
+         \PY{n}{np}\PY{o}{.}\PY{n}{argwhere}\PY{p}{(}\PY{n}{iris}\PY{p}{[}\PY{p}{:}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{]}\PY{o}{.}\PY{n}{astype}\PY{p}{(}\PY{n+nb}{float}\PY{p}{)} \PY{o}{\PYZgt{}} \PY{l+m+mf}{1.0}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}33}]:} array([50])
+\end{Verbatim}
+            
+    \subsubsection{挑战 34
+：设定数组元素的上下限}\label{ux6311ux6218-34-ux8bbeux5b9aux6570ux7ec4ux5143ux7d20ux7684ux4e0aux4e0bux9650}
+
+要求：给定数组 a，将数组中大于 30 的数截断为 30，小于 10 的数截断为 10。
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# 输入数组}
+\NormalTok{np.set_printoptions(precision}\OperatorTok{=}\DecValTok{2}\NormalTok{)}
+\NormalTok{np.random.seed(}\DecValTok{100}\NormalTok{)}
+\NormalTok{a }\OperatorTok{=}\NormalTok{ np.random.uniform(}\DecValTok{1}\NormalTok{,}\DecValTok{50}\NormalTok{, }\DecValTok{20}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}34}]:} \PY{n}{np}\PY{o}{.}\PY{n}{set\PYZus{}printoptions}\PY{p}{(}\PY{n}{precision}\PY{o}{=}\PY{l+m+mi}{2}\PY{p}{)}
+         \PY{n}{np}\PY{o}{.}\PY{n}{random}\PY{o}{.}\PY{n}{seed}\PY{p}{(}\PY{l+m+mi}{100}\PY{p}{)}
+         \PY{n}{a} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{random}\PY{o}{.}\PY{n}{uniform}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{50}\PY{p}{,} \PY{l+m+mi}{20}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{} 答案 1: 使用 np.clip}
+         \PY{n}{np}\PY{o}{.}\PY{n}{clip}\PY{p}{(}\PY{n}{a}\PY{p}{,} \PY{n}{a\PYZus{}min}\PY{o}{=}\PY{l+m+mi}{10}\PY{p}{,} \PY{n}{a\PYZus{}max}\PY{o}{=}\PY{l+m+mi}{30}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{} 答案 2: 使用 np.where}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{where}\PY{p}{(}\PY{n}{a} \PY{o}{\PYZlt{}} \PY{l+m+mi}{10}\PY{p}{,} \PY{l+m+mi}{10}\PY{p}{,} \PY{n}{np}\PY{o}{.}\PY{n}{where}\PY{p}{(}\PY{n}{a} \PY{o}{\PYZgt{}} \PY{l+m+mi}{30}\PY{p}{,} \PY{l+m+mi}{30}\PY{p}{,} \PY{n}{a}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+[ 27.63  14.64  21.8   30.    10.    10.    30.    30.    10.    29.18  30.
+  11.25  10.08  10.    11.77  30.    30.    10.    30.    14.43]
+
+    \end{Verbatim}
+
+    \subsubsection{挑战 35
+：去掉所有缺失值}\label{ux6311ux6218-35-ux53bbux6389ux6240ux6709ux7f3aux5931ux503c}
+
+要求：给定一维数组 a 包含缺失值，去掉他们。
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# 输入数组}
+\NormalTok{a }\OperatorTok{=}\NormalTok{ np.array([}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{,np.nan,}\DecValTok{5}\NormalTok{,}\DecValTok{6}\NormalTok{,}\DecValTok{7}\NormalTok{,np.nan])}
+\end{Highlighting}
+\end{Shaded}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}35}]:} \PY{n}{a} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{,}\PY{n}{np}\PY{o}{.}\PY{n}{nan}\PY{p}{,}\PY{l+m+mi}{5}\PY{p}{,}\PY{l+m+mi}{6}\PY{p}{,}\PY{l+m+mi}{7}\PY{p}{,}\PY{n}{np}\PY{o}{.}\PY{n}{nan}\PY{p}{]}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{} 答案:}
+         \PY{n}{a}\PY{p}{[}\PY{o}{\PYZti{}}\PY{n}{np}\PY{o}{.}\PY{n}{isnan}\PY{p}{(}\PY{n}{a}\PY{p}{)}\PY{p}{]}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}35}]:} array([ 1.,  2.,  3.,  5.,  6.,  7.])
+\end{Verbatim}
+            
+
+    % Add a bibliography block to the postdoc
+    
+    
+    
+    \end{document}
