@@ -26,7 +26,6 @@
 import os
 from numpy import *
 from package import *
-import matplotlib.pyplot as plt
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 
 def classifyPerson():

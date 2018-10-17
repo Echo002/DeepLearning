@@ -35,7 +35,6 @@ def CreateDataSet():
     return group,lables
 
 group,labels = CreateDataSet()
-# print(group,labels)
 def classify0(inX, DataSet, labels, k):
     dataSetSize = DataSet.shape[0]
     diffMat = tile(inX, (dataSetSize, 1)) - DataSet
@@ -75,4 +74,7 @@ def autoNorm(dataSet):
     normDataSet = normDataSet / tile(ranges, (m,1))
     return normDataSet, ranges, minvals
 
-#print(classify0([0,0], group, labels, 3))
+# fig = plt.figure()
+# ax = fig.add_subplot(111)
+# ax.scatter(datingDataMat[:, 1], datingDataMat[:, 2], 15.0*array(datingLabels), 15.0*array(datingLabels))
+# # plt.show()
