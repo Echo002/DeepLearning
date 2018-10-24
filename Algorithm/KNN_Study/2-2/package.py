@@ -35,6 +35,8 @@ def CreateDataSet():
     return group,lables
 
 group,labels = CreateDataSet()
+
+# 程序清单2-1 k-邻近算法
 def classify0(inX, DataSet, labels, k):
     dataSetSize = DataSet.shape[0]
     diffMat = tile(inX, (dataSetSize, 1)) - DataSet
@@ -49,6 +51,7 @@ def classify0(inX, DataSet, labels, k):
     sortedClassCount = sorted(classCount.items(), key = operator.itemgetter(1), reverse=True)
     return sortedClassCount[0][0]
 
+# 程序清单2-2 将文本记录转换为Numpy的解析程序
 def file2matrix(filename):
     fr = open(filename)
     arrayOlines = fr.readlines()
@@ -64,6 +67,7 @@ def file2matrix(filename):
         index += 1
     return returnMat,classLabelVector
 
+# 程序清单2-3 归一化特征值
 def autoNorm(dataSet):
     minvals = dataSet.min(0)
     maxvals = dataSet.max(0)
@@ -78,3 +82,16 @@ def autoNorm(dataSet):
 # ax = fig.add_subplot(111)
 # ax.scatter(datingDataMat[:, 1], datingDataMat[:, 2], 15.0*array(datingLabels), 15.0*array(datingLabels))
 # # plt.show()
+
+# 将图像转化为测试向量
+def img2vector(filename):
+    returnVect = zeros((1, 1024))
+    fr = open(filename)
+    for i in range(32):
+        lineStr = fr.readline()
+        for j in range(32):
+            returnVect[0, 32*i+j] = int(lineStr[j])
+    return returnVect
+
+# testVector = img2vector('trainingDigits/0_3.txt')
+# print(testVector[0, 32:63])
