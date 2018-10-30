@@ -27,7 +27,7 @@ import os
 from math import log
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 
-dataset = [[1, 1, 'yes'],
+dataSet = [[1, 1, 'yes'],
             [1, 1, 'yes'],
             [1, 0, 'no'],
             [0, 1, 'no'],
@@ -48,7 +48,7 @@ def calcShannonEnt(dataSet):
         prob = float(labelCounts[key])/numEntires
         shannonEnt -= prob * log(prob, 2)
     return shannonEnt
-print(calcShannonEnt(dataset))
+print(calcShannonEnt(dataSet))
 
 # 程序清单3-2 按照给定特征划分数据集
 def splitDataSet(dataSet, axis, value):
@@ -59,3 +59,22 @@ def splitDataSet(dataSet, axis, value):
             reducedFeatVec.extend(featVec[axis+1:])
             retDataset.append(reducedFeatVec)
     return retDataset
+
+# 程序清单3-3 选择最好的数据集划分方式
+def chooseBsetFeatureToSplit(dataSet):
+    numFeatures = len(dataSet[0]) - 1
+    baseEntropy = calcShannonEnt(dataSet)
+    bestInforGain = 0.0; bestFeature = -1
+    for i in range(numFeatures):
+        featList = [example[i] for example in dataSet]
+        uniqueVals = set(featList)
+        newEntropy = 0.0
+        for value in uniqueVals:
+            subDataSet = splitDataSet(dataSet, i, value)
+            prob = len(subDataSet)/float(len(dataSet))
+            newEntropy += prob * calcShannonEnt(subDataSet)
+        infoGain = baseEntropy - newEntropy
+        if (infoGain > bestInforGain):
+            bestInforGain = infoGain
+            bestFeature = i
+    return bestFeature
