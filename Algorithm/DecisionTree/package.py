@@ -25,14 +25,8 @@
 #                BUG是不可能有BUG的!
 import os
 from math import log
+import operator
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
-
-dataSet = [[1, 1, 'yes'],
-            [1, 1, 'yes'],
-            [1, 0, 'no'],
-            [0, 1, 'no'],
-            [0, 1, 'no']]
-labels = ['no surfacing', 'flippers']
 
 # 程序清单3-1 计算给定数据集的香农熵
 def calcShannonEnt(dataSet):
@@ -48,7 +42,6 @@ def calcShannonEnt(dataSet):
         prob = float(labelCounts[key])/numEntires
         shannonEnt -= prob * log(prob, 2)
     return shannonEnt
-print(calcShannonEnt(dataSet))
 
 # 程序清单3-2 按照给定特征划分数据集
 def splitDataSet(dataSet, axis, value):
@@ -78,3 +71,12 @@ def chooseBsetFeatureToSplit(dataSet):
             bestInforGain = infoGain
             bestFeature = i
     return bestFeature
+
+def majorityCut(classList):
+    classCount = {}
+    for vote in classList:
+        if vote not in classCount.keys():
+            classCount[vote] = 0
+        classCount += 1
+    sortedClassCount = sorted(classCount.items(), key=operator.itemgetter(1), reverse=True)
+    return sortedClassCount[0][0]
