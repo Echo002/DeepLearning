@@ -51,5 +51,5 @@ def setOfWords2Vec(vocabList, inputSet):
     for word in inputSet:
         if word in vocabList:
             returnVec[vocabList.index(word)] = 1
-        else: print "the word: %s is not in my Vocabulary!" % word
+        else: print("the word: %s is not in my Vocabulary!" % word)
     return returnVec
