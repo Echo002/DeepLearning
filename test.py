@@ -1,0 +1,54 @@
+#!/usr/bin/env python
+#!-*-coding:utf-8 -*-
+#!@Author:xugao
+#         ┌─┐       ┌─┐
+#      ┌──┘ ┴───────┘ ┴──┐
+#      │                 │
+#      │                 │
+#      │    ＞  　　＜    │
+#      │                 │
+#      │  ....　⌒　....　│
+#      │                 │
+#      └───┐         ┌───┘
+#          │         │
+#          │         │
+#          │         │
+#          │         └──────────────┐
+#          │                        │
+#          │                        ├─┐
+#          │                        ┌─┘
+#          │                        │
+#          └─┐  ┐  ┌───────┬──┐  ┌──┘
+#            │ ─┤ ─┤       │ ─┤ ─┤
+#            └──┴──┘       └──┴──┘
+#                神兽保佑
+#                BUG是不可能有BUG的!
+import os
+
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
+
+import matplotlib.pyplot as plt
+import numpy as np
+
+x = np.linspace(-3, 3, 50)
+y = 0.1 * x
+
+plt.figure()
+plt.plot(x, y, linewidth = 10)
+plt.ylim(-2, 2)
+
+ax = plt.gca()
+ax.spines['right'].set_color('none')
+ax.spines['top'].set_color('none')
+
+ax.xaxis.set_ticks_position('bottom')
+ax.yaxis.set_ticks_position('left')
+
+ax.spines['bottom'].set_position(('data', 0))
+ax.spines['left'].set_position(('data', 0))
+
+for label in ax.get_xticklabels() + ax.get_yticklabels():
+    label.set_fontsize(12)
+    label.set_bbox(dict(facecolor = 'white', edgecolor = 'None', alpha = 0.7)) #alpha为透明度
+
+plt.show()
