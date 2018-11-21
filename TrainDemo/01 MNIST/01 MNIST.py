@@ -118,27 +118,27 @@ def train(mnist):
     accuracy = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))
 
 
-# 初始化并开始训练过程
-with tf.Session() as sess:
-    tf.global_variables_initializer().run()
-    # validate_feed = {x: mnist.validation.images, y_: mnist.validation.lables}
+    # 初始化并开始训练过程
+    with tf.Session() as sess:
+        tf.global_variables_initializer().run()
+        validate_feed = {x: mnist.validation.images, y_: mnist.validation.lables}
 
-    # 准备测试数据
-    # test_feed = {x: mnist.test.images, y_: mnist.test.lables}
+        # 准备测试数据
+        test_feed = {x: mnist.test.images, y_: mnist.test.lables}
 
-    # 迭代训练神经网络
-    for i in range(TRAINING_STEPS):
-        if i % 100 == 0:
-            validate_acc = sess.run(accuracy, feed_dict={x: mnist.validation.images, y_: mnist.validation.lables})
-            print('After %d training step(s),test accuracy using average model is %g' % (i, validate_acc))
+        # 迭代训练神经网络
+        for i in range(TRAINING_STEPS):
+            if i % 100 == 0:
+                validate_acc = sess.run(accuracy, feed_dict=validate_feed)
+                print('After %d training step(s),test accuracy using average model is %g' % (i, validate_acc))
 
-        # 产生新的batch数据
-        xs, ys = mnist.train.next_batch(BATCH_SIZE)
-        sess.run(train_op, feed_dict={x: xs, y: ys})
+            # 产生新的batch数据
+            xs, ys = mnist.train.next_batch(BATCH_SIZE)
+            sess.run(train_op, feed_dict=test_feed)
 
-    # 训练结束后，测试正确率
-    test_acc = sess.run(accuracy, feed_dict={x: mnist.test.images, y_: mnist.test.lables})
-    print('After %d training step(s),test accuracy using average model is %g' % (TRAIN_STEPS, test_acc))
+        # 训练结束后，测试正确率
+        test_acc = sess.run(accuracy, feed_dict={x: mnist.test.images, y_: mnist.test.lables})
+        print('After %d training step(s),test accuracy using average model is %g' % (TRAINING_STEPS, test_acc))
 
 
 def main(argv=None):
