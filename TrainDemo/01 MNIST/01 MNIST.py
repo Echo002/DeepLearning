@@ -143,9 +143,8 @@ def train(mnist):
 
 def main(argv=None):
     # 声明数据集的类
-    mnist = input_data.read_data_sets('D:\数据集\MNIST', one_hot=True)
+    mnist = input_data.read_data_sets('E:\DataSet\MNIST', one_hot=True)
     train(mnist)
-
 
 if __name__ == '__main__':
     tf.app.run()
