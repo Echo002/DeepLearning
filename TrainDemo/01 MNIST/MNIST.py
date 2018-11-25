@@ -130,7 +130,8 @@ def train(mnist):
         for i in range(TRAINING_STEPS):
             if i % 100 == 0:
                 validate_acc = sess.run(accuracy, feed_dict=validate_feed)
-                print('After %d training step(s),test accuracy using average model is %g' % (i, validate_acc))
+                test_acc = sess.run(accuracy, feed_dict=test_feed)
+                print('After %d training step(s),validation accuracy using average model is %g, test accuracy using average model is %g' % (i, validate_acc, test_acc))
 
             # 产生新的batch数据
             xs, ys = mnist.train.next_batch(BATCH_SIZE)
