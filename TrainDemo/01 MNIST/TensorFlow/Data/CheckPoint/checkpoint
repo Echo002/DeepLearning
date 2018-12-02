@@ -1,0 +1,6 @@
+model_checkpoint_path: "E:\\Code\\DeepLearning\\TrainDemo\\01 MNIST\\TensorFlow\\Data\\checkPoint\\model.ckpt-29001"
+all_model_checkpoint_paths: "E:\\Code\\DeepLearning\\TrainDemo\\01 MNIST\\TensorFlow\\Data\\checkPoint\\model.ckpt-25001"
+all_model_checkpoint_paths: "E:\\Code\\DeepLearning\\TrainDemo\\01 MNIST\\TensorFlow\\Data\\checkPoint\\model.ckpt-26001"
+all_model_checkpoint_paths: "E:\\Code\\DeepLearning\\TrainDemo\\01 MNIST\\TensorFlow\\Data\\checkPoint\\model.ckpt-27001"
+all_model_checkpoint_paths: "E:\\Code\\DeepLearning\\TrainDemo\\01 MNIST\\TensorFlow\\Data\\checkPoint\\model.ckpt-28001"
+all_model_checkpoint_paths: "E:\\Code\\DeepLearning\\TrainDemo\\01 MNIST\\TensorFlow\\Data\\checkPoint\\model.ckpt-29001"
