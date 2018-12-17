@@ -78,6 +78,7 @@ def restore_param():
         torch.nn.Linear(10, 1)
     )
     prediction = net3(x)
+
     net3.load_state_dict(torch.load('net_params.pkl'))
     plt.subplot(133)
     plt.title('Net3')
