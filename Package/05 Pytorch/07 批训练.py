@@ -22,7 +22,7 @@
 #            │ ─┤ ─┤       │ ─┤ ─┤
 #            └──┴──┘       └──┴──┘
 #                神兽保佑
-#                BUG是不可能有BUG的!asd
+#                BUG是不可能有BUG的!
 import os
 
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
