@@ -1,36 +1,9 @@
-#!/usr/bin/env python
-#!-*-coding:utf-8 -*-
-#!@Author:xugao
-#         ┌─┐       ┌─┐
-#      ┌──┘ ┴───────┘ ┴──┐
-#      │                 │
-#      │                 │
-#      │    ＞  　　＜    │
-#      │                 │
-#      │  ....　⌒　....　│
-#      │                 │
-#      └───┐         ┌───┘
-#          │         │
-#          │         │
-#          │         │
-#          │         └──────────────┐
-#          │                        │
-#          │                        ├─┐
-#          │                        ┌─┘
-#          │                        │
-#          └─┐  ┐  ┌───────┬──┐  ┌──┘
-#            │ ─┤ ─┤       │ ─┤ ─┤
-#            └──┴──┘       └──┴──┘
-#                神兽保佑
-#                BUG是不可能有BUG的!
-import os
+import numpy as np
 
-os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
-
-import pandas as pd
-from numpy import *
-import matplotlib.pyplot as plt
-ts = pd.Series(random.randn(1000), index=pd.date_range('1/1/2000', periods=1000))
-ts = ts.cumsum()
-ts.plot()
-plt.show()
+x_train = np.array([[1,2,3],[4,5,6]])
+m = len(x_train)
+result = np.zeros(m,10)
+for i,j in enumerate(x_train):
+    print(result)
+    result[i,j] = 1
+    print(result)
