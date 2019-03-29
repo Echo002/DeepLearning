@@ -1,4 +1,5 @@
-from keras.applications.imagenet_utils import _obtain_input_shape
+import keras
+from keras_applications.imagenet_utils import _obtain_input_shape
 # 确定适当的输入形状，相当于opencv中的read.img，将图像变为数组
 from keras import backend as K
 from keras.layers import Input, Convolution2D, SeparableConv2D,\
@@ -22,8 +23,8 @@ def MobileNet(input_tensor=None, input_shape=None, alpha=1, shallow=False, class
         """
 
     input_shape = _obtain_input_shape(input_shape,
-                                      default_size=224,
-                                      min_size=96,
+                                      default_size=32,
+                                      min_size=28,
                                       data_format=K.image_data_format(),
                                       require_flatten=True)
 
@@ -39,67 +40,67 @@ def MobileNet(input_tensor=None, input_shape=None, alpha=1, shallow=False, class
     x = BatchNormalization()(x)
     x = Activation('relu')(x)
 
-    # x = SeparableConv2D(int(32 * alpha), (3, 3), strides=(1, 1), padding='same', depth_multiplier=1, use_bias=False)(x)
-    # x = BatchNormalization()(x)
-    # x = Activation('relu')(x)
+    x = SeparableConv2D(int(64 * alpha), (3, 3), strides=(1, 1), depth_multiplier=1, padding='same', use_bias=False)(x)
+    x = BatchNormalization()(x)
+    x = Activation('relu')(x)
     # x = Convolution2D(int(64 * alpha), (1, 1), strides=(1, 1), padding='same', use_bias=False)(x)
     # x = BatchNormalization()(x)
     # x = Activation('relu')(x)
-    #
-    # x = SeparableConv2D(int(64 * alpha), (3, 3), strides=(2, 2), padding='same', use_bias=False)(x)
-    # x = BatchNormalization()(x)
-    # x = Activation('relu')(x)
-    # x = Convolution2D(int(128 * alpha), (1, 1), strides=(1, 1), padding='same', depth_multiplier=1, use_bias=False)(x)
-    # x = BatchNormalization()(x)
-    # x = Activation('relu')(x)
-    #
-    # x = SeparableConv2D(int(128 * alpha), (3, 3), strides=(1, 1), padding='same', depth_multiplier=1, use_bias=False)(x)
-    # x = BatchNormalization()(x)
-    # x = Activation('relu')(x)
+
+    x = SeparableConv2D(int(128 * alpha), (3, 3), strides=(2, 2), depth_multiplier=1, padding='same', use_bias=False)(x)
+    x = BatchNormalization()(x)
+    x = Activation('relu')(x)
     # x = Convolution2D(int(128 * alpha), (1, 1), strides=(1, 1), padding='same', use_bias=False)(x)
     # x = BatchNormalization()(x)
     # x = Activation('relu')(x)
     #
-    # x = SeparableConv2D(int(128 * alpha), (3, 3), strides=(2, 2), padding='same', depth_multiplier=1, use_bias=False)(x)
+    x = SeparableConv2D(int(128 * alpha), (3, 3), strides=(1, 1), depth_multiplier=1, padding='same', use_bias=False)(x)
+    x = BatchNormalization()(x)
+    x = Activation('relu')(x)
+    # x = Convolution2D(int(128 * alpha), (1, 1), strides=(1, 1), padding='same', use_bias=False)(x)
     # x = BatchNormalization()(x)
     # x = Activation('relu')(x)
+    #
+    x = SeparableConv2D(int(256 * alpha), (3, 3), strides=(2, 2), depth_multiplier=1, padding='same', use_bias=False)(x)
+    x = BatchNormalization()(x)
+    x = Activation('relu')(x)
     # x = Convolution2D(int(256 * alpha), (1, 1), strides=(1, 1), padding='same', use_bias=False)(x)
     # x = BatchNormalization()(x)
     # x = Activation('relu')(x)
     #
-    # x = SeparableConv2D(int(256 * alpha), (3, 3), strides=(1, 1), padding='same', depth_multiplier=1, use_bias=False)(x)
-    # x = BatchNormalization()(x)
-    # x = Activation('relu')(x)
+    x = SeparableConv2D(int(256 * alpha), (3, 3), strides=(1, 1), depth_multiplier=1, padding='same', use_bias=False)(x)
+    x = BatchNormalization()(x)
+    x = Activation('relu')(x)
     # x = Convolution2D(int(256 * alpha), (1, 1), strides=(1, 1), padding='same', use_bias=False)(x)
     # x = BatchNormalization()(x)
     # x = Activation('relu')(x)
     #
-    # x = SeparableConv2D(int(256 * alpha), (3, 3), strides=(2, 2), padding='same', depth_multiplier=1, use_bias=False)(x)
-    # x = BatchNormalization()(x)
-    # x = Activation('relu')(x)
+    x = SeparableConv2D(int(512 * alpha), (3, 3), strides=(2, 2), depth_multiplier=1, padding='same', use_bias=False)(x)
+    x = BatchNormalization()(x)
+    x = Activation('relu')(x)
     # x = Convolution2D(int(512 * alpha), (1, 1), strides=(1, 1), padding='same', use_bias=False)(x)
     # x = BatchNormalization()(x)
     # x = Activation('relu')(x)
     #
-    # if not shallow:
-    #     for _ in range(5):
-    #         x = SeparableConv2D(int(512 * alpha), (3, 3), strides=(1, 1), padding='same', depth_multiplier=1, use_bias=False)(x)
-    #         x = BatchNormalization()(x)
-    #         x = Activation('relu')(x)
-    #         x = Convolution2D(int(512 * alpha), (1, 1), strides=(1, 1), padding='same', use_bias=False)(x)
-    #         x = BatchNormalization()(x)
-    #         x = Activation('relu')(x)
+    if not shallow:
+        for _ in range(5):
+            x = SeparableConv2D(int(512 * alpha), (3, 3), strides=(1, 1), depth_multiplier=1, padding='same', use_bias=False)(x)
+            x = BatchNormalization()(x)
+            x = Activation('relu')(x)
+            # x = Convolution2D(int(512 * alpha), (1, 1), strides=(1, 1), padding='same', use_bias=False)(x)
+            # x = BatchNormalization()(x)
+            # x = Activation('relu')(x)
     #
-    # x = SeparableConv2D(int(512 * alpha), (3, 3), strides=(2, 2), padding='same', depth_multiplier=1, use_bias=False)(x)
-    # x = BatchNormalization()(x)
-    # x = Activation('relu')(x)
+    x = SeparableConv2D(int(1024 * alpha), (3, 3), strides=(2, 2), depth_multiplier=1, padding='same', use_bias=False)(x)
+    x = BatchNormalization()(x)
+    x = Activation('relu')(x)
     # x = Convolution2D(int(1024 * alpha), (1, 1), strides=(1, 1), padding='same', use_bias=False)(x)
     # x = BatchNormalization()(x)
     # x = Activation('relu')(x)
     #
-    # x = SeparableConv2D(int(1024 * alpha), (3, 3), strides=(1, 1), padding='same', depth_multiplier=1, use_bias=False)(x)
-    # x = BatchNormalization()(x)
-    # x = Activation('relu')(x)
+    x = SeparableConv2D(int(1024 * alpha), (3, 3), strides=(1, 1), depth_multiplier=1, padding='same', use_bias=False)(x)
+    x = BatchNormalization()(x)
+    x = Activation('relu')(x)
     # x = Convolution2D(int(1024 * alpha), (1, 1), strides=(1, 1), padding='same', use_bias=False)(x)
     # x = BatchNormalization()(x)
     # x = Activation('relu')(x)
