@@ -9,7 +9,7 @@ from keras.engine.topology import get_source_inputs
 # from depthwise_conv2d import DepthwiseConvolution2D
 from keras.utils import plot_model
 
-def MobileNet(input_tensor=None, input_shape=None, alpha=1, shallow=False, classes=10):
+def MobileNet(input_tensor=None, input_shape=None, alpha=1, shallow=True, classes=10):
     """
     # 参数说明
             input_tensor: 输入的tensor，如果不是Keras支持的格式也可以进行转换
@@ -26,7 +26,7 @@ def MobileNet(input_tensor=None, input_shape=None, alpha=1, shallow=False, class
                                       default_size=32,
                                       min_size=28,
                                       data_format=K.image_data_format(),
-                                      require_flatten=True)
+                                      require_flatten=False)
 
     if input_tensor is None:
         img_input = Input(shape=input_shape)
@@ -122,5 +122,5 @@ def MobileNet(input_tensor=None, input_shape=None, alpha=1, shallow=False, class
 if __name__ == '__main__':
     m = MobileNet()
     print(m.summary())
-    #plot_model(m, to_file='model1.png')
+    plot_model(m, to_file='model.png')
     print("model ready")

@@ -42,7 +42,14 @@ y_label_train = np_utils.to_categorical(y_label_train)
 y_label_test = np_utils.to_categorical(y_label_test)
 
 model = MobileNet()
+try:
+    model.load_weights("mobileV1-lite.h5")
+    print("模型加载成功！继续训练")
+except:
+    print("模型加载失败！从头开始训练")
 
 model.compile(loss='categorical_crossentropy',optimizer='adam',metrics=['accuracy'])
-train_history = model.fit(x_img_train, y_label_train, validation_split=0.2, epochs=10, batch_size=64, verbose=2)
+train_history = model.fit(x_img_train, y_label_train, validation_split=0.2, epochs=10, batch_size=128, verbose=2)
+model.save_weights("mobileV1-lite.h5")
+print("保存模型成功！")
 
