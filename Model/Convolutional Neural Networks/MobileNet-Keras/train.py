@@ -52,4 +52,3 @@ model.compile(loss='categorical_crossentropy',optimizer='adam',metrics=['accurac
 train_history = model.fit(x_img_train, y_label_train, validation_split=0.2, epochs=10, batch_size=128, verbose=2)
 model.save_weights("mobileV1-lite.h5")
 print("保存模型成功！")
-
