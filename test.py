@@ -7,3 +7,4 @@ with tf.device('/gpu:0'):
 
 with tf.Session() as sess:
     print (sess.run(c))
+#test
