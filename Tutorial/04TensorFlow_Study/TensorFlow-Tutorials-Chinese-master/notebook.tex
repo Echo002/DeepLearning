@@ -1,0 +1,1064 @@
+
+% Default to the notebook output style
+
+    
+
+
+% Inherit from the specified cell style.
+
+
+
+
+    
+\documentclass[11pt]{article}
+
+    
+    
+    \usepackage[T1]{fontenc}
+    % Nicer default font (+ math font) than Computer Modern for most use cases
+    \usepackage{mathpazo}
+
+    % Basic figure setup, for now with no caption control since it's done
+    % automatically by Pandoc (which extracts ![](path) syntax from Markdown).
+    \usepackage{graphicx}
+    % We will generate all images so they have a width \maxwidth. This means
+    % that they will get their normal width if they fit onto the page, but
+    % are scaled down if they would overflow the margins.
+    \makeatletter
+    \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth
+    \else\Gin@nat@width\fi}
+    \makeatother
+    \let\Oldincludegraphics\includegraphics
+    % Set max figure width to be 80% of text width, for now hardcoded.
+    \renewcommand{\includegraphics}[1]{\Oldincludegraphics[width=.8\maxwidth]{#1}}
+    % Ensure that by default, figures have no caption (until we provide a
+    % proper Figure object with a Caption API and a way to capture that
+    % in the conversion process - todo).
+    \usepackage{caption}
+    \DeclareCaptionLabelFormat{nolabel}{}
+    \captionsetup{labelformat=nolabel}
+
+    \usepackage{adjustbox} % Used to constrain images to a maximum size 
+    \usepackage{xcolor} % Allow colors to be defined
+    \usepackage{enumerate} % Needed for markdown enumerations to work
+    \usepackage{geometry} % Used to adjust the document margins
+    \usepackage{amsmath} % Equations
+    \usepackage{amssymb} % Equations
+    \usepackage{textcomp} % defines textquotesingle
+    % Hack from http://tex.stackexchange.com/a/47451/13684:
+    \AtBeginDocument{%
+        \def\PYZsq{\textquotesingle}% Upright quotes in Pygmentized code
+    }
+    \usepackage{upquote} % Upright quotes for verbatim code
+    \usepackage{eurosym} % defines \euro
+    \usepackage[mathletters]{ucs} % Extended unicode (utf-8) support
+    \usepackage[utf8x]{inputenc} % Allow utf-8 characters in the tex document
+    \usepackage{fancyvrb} % verbatim replacement that allows latex
+    \usepackage{grffile} % extends the file name processing of package graphics 
+                         % to support a larger range 
+    % The hyperref package gives us a pdf with properly built
+    % internal navigation ('pdf bookmarks' for the table of contents,
+    % internal cross-reference links, web links for URLs, etc.)
+    \usepackage{hyperref}
+    \usepackage{longtable} % longtable support required by pandoc >1.10
+    \usepackage{booktabs}  % table support for pandoc > 1.12.2
+    \usepackage[inline]{enumitem} % IRkernel/repr support (it uses the enumerate* environment)
+    \usepackage[normalem]{ulem} % ulem is needed to support strikethroughs (\sout)
+                                % normalem makes italics be italics, not underlines
+    
+
+    
+    
+    % Colors for the hyperref package
+    \definecolor{urlcolor}{rgb}{0,.145,.698}
+    \definecolor{linkcolor}{rgb}{.71,0.21,0.01}
+    \definecolor{citecolor}{rgb}{.12,.54,.11}
+
+    % ANSI colors
+    \definecolor{ansi-black}{HTML}{3E424D}
+    \definecolor{ansi-black-intense}{HTML}{282C36}
+    \definecolor{ansi-red}{HTML}{E75C58}
+    \definecolor{ansi-red-intense}{HTML}{B22B31}
+    \definecolor{ansi-green}{HTML}{00A250}
+    \definecolor{ansi-green-intense}{HTML}{007427}
+    \definecolor{ansi-yellow}{HTML}{DDB62B}
+    \definecolor{ansi-yellow-intense}{HTML}{B27D12}
+    \definecolor{ansi-blue}{HTML}{208FFB}
+    \definecolor{ansi-blue-intense}{HTML}{0065CA}
+    \definecolor{ansi-magenta}{HTML}{D160C4}
+    \definecolor{ansi-magenta-intense}{HTML}{A03196}
+    \definecolor{ansi-cyan}{HTML}{60C6C8}
+    \definecolor{ansi-cyan-intense}{HTML}{258F8F}
+    \definecolor{ansi-white}{HTML}{C5C1B4}
+    \definecolor{ansi-white-intense}{HTML}{A1A6B2}
+
+    % commands and environments needed by pandoc snippets
+    % extracted from the output of `pandoc -s`
+    \providecommand{\tightlist}{%
+      \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+    % Add ',fontsize=\small' for more characters per line
+    \newenvironment{Shaded}{}{}
+    \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+    \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+    \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+    \newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+    \newcommand{\RegionMarkerTok}[1]{{#1}}
+    \newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\NormalTok}[1]{{#1}}
+    
+    % Additional commands for more recent versions of Pandoc
+    \newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{{#1}}}
+    \newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{{#1}}}
+    \newcommand{\ImportTok}[1]{{#1}}
+    \newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{{#1}}}}
+    \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{{#1}}}
+    \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{{#1}}}
+    \newcommand{\BuiltInTok}[1]{{#1}}
+    \newcommand{\ExtensionTok}[1]{{#1}}
+    \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{{#1}}}
+    \newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{{#1}}}
+    \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    
+    
+    % Define a nice break command that doesn't care if a line doesn't already
+    % exist.
+    \def\br{\hspace*{\fill} \\* }
+    % Math Jax compatability definitions
+    \def\gt{>}
+    \def\lt{<}
+    % Document parameters
+    \title{01\_Simple\_Linear\_Model\_CN}
+    
+    
+    
+
+    % Pygments definitions
+    
+\makeatletter
+\def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
+    \let\PY@ul=\relax \let\PY@tc=\relax%
+    \let\PY@bc=\relax \let\PY@ff=\relax}
+\def\PY@tok#1{\csname PY@tok@#1\endcsname}
+\def\PY@toks#1+{\ifx\relax#1\empty\else%
+    \PY@tok{#1}\expandafter\PY@toks\fi}
+\def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
+    \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
+\def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
+
+\expandafter\def\csname PY@tok@w\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
+\expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ow\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@ne\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
+\expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@no\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ni\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
+\expandafter\def\csname PY@tok@na\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
+\expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@s\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@si\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sr\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@ss\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@gh\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gu\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gr\endcsname{\def\PY@tc##1{\textcolor[rgb]{1.00,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
+\expandafter\def\csname PY@tok@gs\endcsname{\let\PY@bf=\textbf}
+\expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@go\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.53,0.53}{##1}}}
+\expandafter\def\csname PY@tok@gt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\expandafter\def\csname PY@tok@err\endcsname{\def\PY@bc##1{\setlength{\fboxsep}{0pt}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}
+\expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kd\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kr\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@fm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@vc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vg\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sa\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@dl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s2\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@mb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@il\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mo\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ch\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cpf\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+
+\def\PYZbs{\char`\\}
+\def\PYZus{\char`\_}
+\def\PYZob{\char`\{}
+\def\PYZcb{\char`\}}
+\def\PYZca{\char`\^}
+\def\PYZam{\char`\&}
+\def\PYZlt{\char`\<}
+\def\PYZgt{\char`\>}
+\def\PYZsh{\char`\#}
+\def\PYZpc{\char`\%}
+\def\PYZdl{\char`\$}
+\def\PYZhy{\char`\-}
+\def\PYZsq{\char`\'}
+\def\PYZdq{\char`\"}
+\def\PYZti{\char`\~}
+% for compatibility with earlier versions
+\def\PYZat{@}
+\def\PYZlb{[}
+\def\PYZrb{]}
+\makeatother
+
+
+    % Exact colors from NB
+    \definecolor{incolor}{rgb}{0.0, 0.0, 0.5}
+    \definecolor{outcolor}{rgb}{0.545, 0.0, 0.0}
+
+
+
+    
+    % Prevent overflowing lines due to hard-to-break entities
+    \sloppy 
+    % Setup hyperref package
+    \hypersetup{
+      breaklinks=true,  % so long urls are correctly broken across lines
+      colorlinks=true,
+      urlcolor=urlcolor,
+      linkcolor=linkcolor,
+      citecolor=citecolor,
+      }
+    % Slightly bigger margins than the latex defaults
+    
+    \geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+    
+    
+
+    \begin{document}
+    
+    
+    \maketitle
+    
+    
+
+    
+    \hypertarget{tensorflow-ux6559ux7a0b-01}{%
+\section{TensorFlow 教程 \#01}\label{tensorflow-ux6559ux7a0b-01}}
+
+\hypertarget{ux7b80ux5355ux7ebfux6027ux6a21ux578b}{%
+\section{简单线性模型}\label{ux7b80ux5355ux7ebfux6027ux6a21ux578b}}
+
+by \href{http://www.hvass-labs.org/}{Magnus Erik Hvass
+Pedersen}/\href{https://github.com/Hvass-Labs/TensorFlow-Tutorials-Chinese}{GitHub中文}
+/ \href{https://github.com/Hvass-Labs/TensorFlow-Tutorials}{GitHub} /
+\href{https://www.youtube.com/playlist?list=PL9Hr9sNUjfsmEu1ZniY0XpHSzl5uihcXZ}{Videos
+on YouTube}
+
+中文翻译
+\href{https://zhuanlan.zhihu.com/insight-pixel}{thrillerist}修订\href{https://github.com/ZhouGeorge}{ZhouGeorge}
+
+    \hypertarget{ux4ecbux7ecd}{%
+\subsection{介绍}\label{ux4ecbux7ecd}}
+
+这份教程示范了在TensorFlow中使用一个简单线性模型的工作流程。在载入称为MNIST的手写数字图片数据集后，我们在TensorFlow中定义并优化了一个数学模型。（我们）会画出结果并展开讨论。
+
+你应该熟悉基本的线性代数，Python和Jupyter
+Notebook编辑器。如果你对机器学习和分类有基本的理解也很有帮助。
+
+    \hypertarget{ux5bfcux5165}{%
+\subsection{导入}\label{ux5bfcux5165}}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}1}]:} \PY{o}{\PYZpc{}}\PY{k}{matplotlib} inline
+        \PY{k+kn}{import} \PY{n+nn}{matplotlib}\PY{n+nn}{.}\PY{n+nn}{pyplot} \PY{k}{as} \PY{n+nn}{plt}
+        \PY{k+kn}{import} \PY{n+nn}{tensorflow} \PY{k}{as} \PY{n+nn}{tf}
+        \PY{k+kn}{import} \PY{n+nn}{numpy} \PY{k}{as} \PY{n+nn}{np}
+        \PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{metrics} \PY{k}{import} \PY{n}{confusion\PYZus{}matrix}
+\end{Verbatim}
+
+
+    使用Python3.6（Anaconda）开发，TensorFlow版本是：
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}2}]:} \PY{n}{tf}\PY{o}{.}\PY{n}{\PYZus{}\PYZus{}version\PYZus{}\PYZus{}}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}2}]:} '1.12.0'
+\end{Verbatim}
+            
+    \hypertarget{ux8f7dux5165ux6570ux636e}{%
+\subsection{载入数据}\label{ux8f7dux5165ux6570ux636e}}
+
+    MNIST数据集大约有12MB，如果给定的地址里没有文件，它将自动下载。
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}3}]:} \PY{k+kn}{from} \PY{n+nn}{mnist} \PY{k}{import} \PY{n}{MNIST}
+        \PY{n}{data} \PY{o}{=} \PY{n}{MNIST}\PY{p}{(}\PY{n}{data\PYZus{}dir}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{data/MNIST/}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    现在已经载入了MNIST数据集，它由70,000张图像和对应的标签（比如图像的类别）组成。数据集分成三份互相独立的子集。我们在教程中只用训练集和测试集。
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}4}]:} \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Size of:}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{\PYZhy{} Training\PYZhy{}set:}\PY{l+s+se}{\PYZbs{}t}\PY{l+s+se}{\PYZbs{}t}\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s2}{\PYZdq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{data}\PY{o}{.}\PY{n}{num\PYZus{}train}\PY{p}{)}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{\PYZhy{} Validation\PYZhy{}set:}\PY{l+s+se}{\PYZbs{}t}\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s2}{\PYZdq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{data}\PY{o}{.}\PY{n}{num\PYZus{}val}\PY{p}{)}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{\PYZhy{} Test\PYZhy{}set:}\PY{l+s+se}{\PYZbs{}t}\PY{l+s+se}{\PYZbs{}t}\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s2}{\PYZdq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{data}\PY{o}{.}\PY{n}{num\PYZus{}test}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Size of:
+- Training-set:		55000
+- Validation-set:	5000
+- Test-set:		10000
+
+    \end{Verbatim}
+
+    为了方便接下去的操作，复制一些数据的维度。
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}5}]:} \PY{c+c1}{\PYZsh{} The images are stored in one\PYZhy{}dimensional arrays of this length.}
+        \PY{n}{img\PYZus{}size\PYZus{}flat} \PY{o}{=} \PY{n}{data}\PY{o}{.}\PY{n}{img\PYZus{}size\PYZus{}flat}
+        
+        \PY{c+c1}{\PYZsh{} Tuple with height and width of images used to reshape arrays.}
+        \PY{n}{img\PYZus{}shape} \PY{o}{=} \PY{n}{data}\PY{o}{.}\PY{n}{img\PYZus{}shape}
+        
+        \PY{c+c1}{\PYZsh{} Number of classes, one class for each of 10 digits.}
+        \PY{n}{num\PYZus{}classes} \PY{o}{=} \PY{n}{data}\PY{o}{.}\PY{n}{num\PYZus{}classes}
+\end{Verbatim}
+
+
+    \hypertarget{one-hot-ux7f16ux7801}{%
+\subsubsection{One-Hot 编码}\label{one-hot-ux7f16ux7801}}
+
+    加载是数据包括了整形标签和所谓的One-Hot编码输出。One-Hot编码意味着标签从一个单独的数字转换成一个长度等于所有可能类别数量的向量。向量中除了第\(i\)个元素是1，其他元素都是0，这代表着它的类别是\(i\)'。比如，前面五张图像标签的One-Hot编码为：
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}6}]:} \PY{n}{data}\PY{o}{.}\PY{n}{y\PYZus{}test}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{:}\PY{l+m+mi}{5}\PY{p}{,} \PY{p}{:}\PY{p}{]}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}6}]:} array([[ 0.,  0.,  0.,  0.,  0.,  0.,  0.,  1.,  0.,  0.],
+               [ 0.,  0.,  1.,  0.,  0.,  0.,  0.,  0.,  0.,  0.],
+               [ 0.,  1.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.],
+               [ 1.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.],
+               [ 0.,  0.,  0.,  0.,  1.,  0.,  0.,  0.,  0.,  0.]])
+\end{Verbatim}
+            
+    我们也需要将标签转换成整形用于比较和性能评估。因此我们通过
+\texttt{np.argmax()}取最大元素的索引，将One-Hot编码的向量转换成一个单独的数字。但是这些工作已经在我们加载数据的时候完成了，所以我们可以开到测试集中前5张图像的标签，对应上面的One-Hot数组。
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}7}]:} \PY{n}{data}\PY{o}{.}\PY{n}{y\PYZus{}test\PYZus{}cls}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{:}\PY{l+m+mi}{5}\PY{p}{]}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}7}]:} array([7, 2, 1, 0, 4])
+\end{Verbatim}
+            
+    \hypertarget{ux7528ux6765ux7ed8ux5236ux56feux50cfux7684ux5e2eux52a9ux51fdux6570}{%
+\subsubsection{用来绘制图像的帮助函数}\label{ux7528ux6765ux7ed8ux5236ux56feux50cfux7684ux5e2eux52a9ux51fdux6570}}
+
+    这个函数用来在3x3的栅格中画9张图像，然后在每张图像下面写出真实的和预测的类别。
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}8}]:} \PY{k}{def} \PY{n+nf}{plot\PYZus{}images}\PY{p}{(}\PY{n}{images}\PY{p}{,} \PY{n}{cls\PYZus{}true}\PY{p}{,} \PY{n}{cls\PYZus{}pred}\PY{o}{=}\PY{k+kc}{None}\PY{p}{)}\PY{p}{:}
+            \PY{k}{assert} \PY{n+nb}{len}\PY{p}{(}\PY{n}{images}\PY{p}{)} \PY{o}{==} \PY{n+nb}{len}\PY{p}{(}\PY{n}{cls\PYZus{}true}\PY{p}{)} \PY{o}{==} \PY{l+m+mi}{9}
+            
+            \PY{c+c1}{\PYZsh{} Create figure with 3x3 sub\PYZhy{}plots.}
+            \PY{n}{fig}\PY{p}{,} \PY{n}{axes} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{subplots}\PY{p}{(}\PY{l+m+mi}{3}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{)}
+            \PY{n}{fig}\PY{o}{.}\PY{n}{subplots\PYZus{}adjust}\PY{p}{(}\PY{n}{hspace}\PY{o}{=}\PY{l+m+mf}{0.3}\PY{p}{,} \PY{n}{wspace}\PY{o}{=}\PY{l+m+mf}{0.3}\PY{p}{)}
+        
+            \PY{k}{for} \PY{n}{i}\PY{p}{,} \PY{n}{ax} \PY{o+ow}{in} \PY{n+nb}{enumerate}\PY{p}{(}\PY{n}{axes}\PY{o}{.}\PY{n}{flat}\PY{p}{)}\PY{p}{:}
+                \PY{c+c1}{\PYZsh{} Plot image.}
+                \PY{n}{ax}\PY{o}{.}\PY{n}{imshow}\PY{p}{(}\PY{n}{images}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{o}{.}\PY{n}{reshape}\PY{p}{(}\PY{n}{img\PYZus{}shape}\PY{p}{)}\PY{p}{,} \PY{n}{cmap}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{binary}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        
+                \PY{c+c1}{\PYZsh{} Show true and predicted classes.}
+                \PY{k}{if} \PY{n}{cls\PYZus{}pred} \PY{o+ow}{is} \PY{k+kc}{None}\PY{p}{:}
+                    \PY{n}{xlabel} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{True: }\PY{l+s+si}{\PYZob{}0\PYZcb{}}\PY{l+s+s2}{\PYZdq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{cls\PYZus{}true}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{)}
+                \PY{k}{else}\PY{p}{:}
+                    \PY{n}{xlabel} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{True: }\PY{l+s+si}{\PYZob{}0\PYZcb{}}\PY{l+s+s2}{, Pred: }\PY{l+s+si}{\PYZob{}1\PYZcb{}}\PY{l+s+s2}{\PYZdq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{cls\PYZus{}true}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{,} \PY{n}{cls\PYZus{}pred}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{)}
+        
+                \PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}xlabel}\PY{p}{(}\PY{n}{xlabel}\PY{p}{)}
+                
+                \PY{c+c1}{\PYZsh{} Remove ticks from the plot.}
+                \PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}xticks}\PY{p}{(}\PY{p}{[}\PY{p}{]}\PY{p}{)}
+                \PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}yticks}\PY{p}{(}\PY{p}{[}\PY{p}{]}\PY{p}{)}
+                
+            \PY{c+c1}{\PYZsh{} Ensure the plot is shown correctly with multiple plots}
+            \PY{c+c1}{\PYZsh{} in a single Notebook cell.}
+            \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \hypertarget{ux7ed8ux5236ux51e0ux5f20ux56feux50cfux6765ux770bux770bux6570ux636eux662fux5426ux6b63ux786e}{%
+\subsubsection{绘制几张图像来看看数据是否正确}\label{ux7ed8ux5236ux51e0ux5f20ux56feux50cfux6765ux770bux770bux6570ux636eux662fux5426ux6b63ux786e}}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}9}]:} \PY{c+c1}{\PYZsh{} Get the first images from the test\PYZhy{}set.}
+        \PY{n}{images} \PY{o}{=} \PY{n}{data}\PY{o}{.}\PY{n}{x\PYZus{}test}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{:}\PY{l+m+mi}{9}\PY{p}{]}
+        
+        \PY{c+c1}{\PYZsh{} Get the true classes for those images.}
+        \PY{n}{cls\PYZus{}true} \PY{o}{=} \PY{n}{data}\PY{o}{.}\PY{n}{y\PYZus{}test\PYZus{}cls}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{:}\PY{l+m+mi}{9}\PY{p}{]}
+        
+        \PY{c+c1}{\PYZsh{} Plot the images and labels using our helper\PYZhy{}function above.}
+        \PY{n}{plot\PYZus{}images}\PY{p}{(}\PY{n}{images}\PY{o}{=}\PY{n}{images}\PY{p}{,} \PY{n}{cls\PYZus{}true}\PY{o}{=}\PY{n}{cls\PYZus{}true}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_22_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \hypertarget{tensorflowux56fe}{%
+\subsection{TensorFlow图}\label{tensorflowux56fe}}
+
+TensorFlow的全部目的就是使用一个称之为计算图（computational
+graph）的东西，它会比直接在Python中进行相同计算量要高效得多。TensorFlow比Numpy更高效，因为TensorFlow了解整个需要运行的计算图，然而Numpy只知道某个时间点上唯一的数学运算。
+
+TensorFlow也能够自动地计算需要优化的变量的梯度，使得模型有更好的表现。这是由于Graph是简单数学表达式的结合，因此整个图的梯度可以用链式法则推导出来。
+
+TensorFlow还能利用多核CPU和GPU，Google也为TensorFlow制造了称为TPUs（Tensor
+Processing Units）的特殊芯片，它比GPU更快。
+
+一个TensorFlow图由下面几个部分组成，后面会详细描述：
+
+\begin{itemize}
+\tightlist
+\item
+  占位符变量（Placeholder）用来改变图的输入。
+\item
+  模型变量（Model）将会被优化，使得模型表现得更好。
+\item
+  模型本质上就是一些数学函数，它根据Placeholder和模型的输入变量来计算一些输出。
+\item
+  一个cost度量用来指导变量的优化。
+\item
+  一个优化策略会更新模型的变量。
+\end{itemize}
+
+另外，TensorFlow图也包含了一些调试状态，比如用TensorBoard打印log数据，本教程不涉及这些。
+
+    \hypertarget{ux5360ux4f4dux7b26-placeholderux53d8ux91cf}{%
+\subsubsection{占位符
+（Placeholder）变量}\label{ux5360ux4f4dux7b26-placeholderux53d8ux91cf}}
+
+    Placeholder是作为图的输入，每次我们运行图的时候都可能会改变它们。将这个过程称为feeding
+placeholder变量，后面将会描述它。
+
+首先我们为输入图像定义placeholder变量。这让我们可以改变输入到TensorFlow图中的图像。这也是一个张量（tensor），代表一个多维向量或矩阵。数据类型设置为\texttt{float32}，形状设为\texttt{{[}None,\ img\_size\_flat{]}}，\texttt{None}代表tensor可能保存着任意数量的图像，每张图象是一个长度为\texttt{img\_size\_flat}的向量。
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}10}]:} \PY{n}{x} \PY{o}{=} \PY{n}{tf}\PY{o}{.}\PY{n}{placeholder}\PY{p}{(}\PY{n}{tf}\PY{o}{.}\PY{n}{float32}\PY{p}{,} \PY{p}{[}\PY{k+kc}{None}\PY{p}{,} \PY{n}{img\PYZus{}size\PYZus{}flat}\PY{p}{]}\PY{p}{)}
+\end{Verbatim}
+
+
+    接下来我们为输入变量\texttt{x}中的图像所对应的真实标签定义placeholder变量。变量的形状是\texttt{{[}None,\ num\_classes{]}}，这代表着它保存了任意数量的标签，每个标签是长度为\texttt{num\_classes}的向量，本例中长度为10。
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}11}]:} \PY{n}{y\PYZus{}true} \PY{o}{=} \PY{n}{tf}\PY{o}{.}\PY{n}{placeholder}\PY{p}{(}\PY{n}{tf}\PY{o}{.}\PY{n}{float32}\PY{p}{,} \PY{p}{[}\PY{k+kc}{None}\PY{p}{,} \PY{n}{num\PYZus{}classes}\PY{p}{]}\PY{p}{)}
+\end{Verbatim}
+
+
+    最后我们为变量\texttt{x}中图像的真实类别定义placeholder变量。它们是整形，并且这个变量的维度设为\texttt{{[}None{]}}，代表placeholder变量是任意长的一维向量。
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}12}]:} \PY{n}{y\PYZus{}true\PYZus{}cls} \PY{o}{=} \PY{n}{tf}\PY{o}{.}\PY{n}{placeholder}\PY{p}{(}\PY{n}{tf}\PY{o}{.}\PY{n}{int64}\PY{p}{,} \PY{p}{[}\PY{k+kc}{None}\PY{p}{]}\PY{p}{)}
+\end{Verbatim}
+
+
+    \hypertarget{ux9700ux8981ux4f18ux5316ux7684ux53d8ux91cf}{%
+\subsubsection{需要优化的变量}\label{ux9700ux8981ux4f18ux5316ux7684ux53d8ux91cf}}
+
+    除了上面定义的那些给模型输入数据的变量之外，TensorFlow还需要改变一些模型变量，使得训练数据的表现更好。
+
+第一个需要优化的变量称为权重\texttt{weight}，TensorFlow变量需要被初始化为零，它的形状是\texttt{{[}img\_size\_flat,\ num\_classes{]}}，因此它是一个\texttt{img\_size\_flat}行、\texttt{num\_classes}列的二维张量（或矩阵）。
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}13}]:} \PY{n}{weights} \PY{o}{=} \PY{n}{tf}\PY{o}{.}\PY{n}{Variable}\PY{p}{(}\PY{n}{tf}\PY{o}{.}\PY{n}{zeros}\PY{p}{(}\PY{p}{[}\PY{n}{img\PYZus{}size\PYZus{}flat}\PY{p}{,} \PY{n}{num\PYZus{}classes}\PY{p}{]}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    第二个需要优化的是偏差变量\texttt{biases}，它被定义成一个长度为\texttt{num\_classes}的1维张量（或向量）。
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}14}]:} \PY{n}{biases} \PY{o}{=} \PY{n}{tf}\PY{o}{.}\PY{n}{Variable}\PY{p}{(}\PY{n}{tf}\PY{o}{.}\PY{n}{zeros}\PY{p}{(}\PY{p}{[}\PY{n}{num\PYZus{}classes}\PY{p}{]}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \hypertarget{ux6a21ux578b}{%
+\subsubsection{模型}\label{ux6a21ux578b}}
+
+    这个最基本的数学模型将placeholder变量\texttt{x}中的图像与权重\texttt{weight}相乘，然后加上偏差\texttt{biases}。
+
+结果是大小为\texttt{{[}num\_images,\ num\_classes{]}}的一个矩阵，由于\texttt{x}的形状是\texttt{{[}num\_images,\ img\_size\_flat{]}}
+并且
+\texttt{weights}的形状是\texttt{{[}img\_size\_flat,\ num\_classes{]}}，因此两个矩阵乘积的形状是\texttt{{[}num\_images,\ num\_classes{]}}，然后将\texttt{biases}向量添加到矩阵每一行中。
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}15}]:} \PY{n}{logits} \PY{o}{=} \PY{n}{tf}\PY{o}{.}\PY{n}{matmul}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{weights}\PY{p}{)} \PY{o}{+} \PY{n}{biases}
+\end{Verbatim}
+
+
+    现在\texttt{logits}是一个 \texttt{num\_images}
+行\texttt{num\_classes}列的矩阵，第\(i\)行第\(j\)列的那个元素代表着第\(i\)张输入图像有多大可能性是第\(j\)个类别。
+
+然而，这是很粗略的估计并且很难解释，因为数值可能很小或很大，因此我们想要对它们做归一化，使得\texttt{logits}矩阵的每一行相加为1，每个元素限制在0到1之间。这是用一个称为softmax的函数来计算的，结果保存在\texttt{y\_pred}中。
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}16}]:} \PY{n}{y\PYZus{}pred} \PY{o}{=} \PY{n}{tf}\PY{o}{.}\PY{n}{nn}\PY{o}{.}\PY{n}{softmax}\PY{p}{(}\PY{n}{logits}\PY{p}{)}
+\end{Verbatim}
+
+
+    可以从\texttt{y\_pred}矩阵中取每行最大元素的索引值，来得到预测的类别。
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}17}]:} \PY{n}{y\PYZus{}pred\PYZus{}cls} \PY{o}{=} \PY{n}{tf}\PY{o}{.}\PY{n}{argmax}\PY{p}{(}\PY{n}{y\PYZus{}pred}\PY{p}{,} \PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}
+\end{Verbatim}
+
+
+    \hypertarget{ux4f18ux5316ux635fux5931ux51fdux6570}{%
+\subsubsection{优化损失函数}\label{ux4f18ux5316ux635fux5931ux51fdux6570}}
+
+    为了使模型更好地对输入图像进行分类，我们必须改变\texttt{weights}和\texttt{biases}变量。首先我们需要比较模型的预测输出\texttt{y\_pred}和期望输出\texttt{y\_true}，来了解目前模型的性能如何。
+
+交叉熵（cross-entropy）是一个在分类中使用的性能度量。交叉熵是一个常为正值的连续函数，如果模型的预测值精准地符合期望的输出，它就等于零。因此，优化的目的就是最小化交叉熵，通过改变模型中\texttt{weights}和\texttt{biases}的值，使交叉熵越接近零越好。
+
+TensorFlow有一个内置的计算交叉熵的函数。需要注意的是它使用\texttt{logits}的值，因为在它内部也计算了softmax。
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}18}]:} \PY{n}{cross\PYZus{}entropy} \PY{o}{=} \PY{n}{tf}\PY{o}{.}\PY{n}{nn}\PY{o}{.}\PY{n}{softmax\PYZus{}cross\PYZus{}entropy\PYZus{}with\PYZus{}logits\PYZus{}v2}\PY{p}{(}\PY{n}{logits}\PY{o}{=}\PY{n}{logits}\PY{p}{,}
+                                                                    \PY{n}{labels}\PY{o}{=}\PY{n}{y\PYZus{}true}\PY{p}{)}
+\end{Verbatim}
+
+
+    现在，我们已经为每个图像分类计算了交叉熵，所以有一个当前模型在每张图上的性能度量。但是为了用交叉熵来指导模型变量的优化，我们需要一个额外的标量值，因此我们简单地利用所有图像分类交叉熵的均值。
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}19}]:} \PY{n}{cost} \PY{o}{=} \PY{n}{tf}\PY{o}{.}\PY{n}{reduce\PYZus{}mean}\PY{p}{(}\PY{n}{cross\PYZus{}entropy}\PY{p}{)}
+\end{Verbatim}
+
+
+    \hypertarget{ux4f18ux5316ux65b9ux6cd5}{%
+\subsubsection{优化方法}\label{ux4f18ux5316ux65b9ux6cd5}}
+
+    现在，我们有一个需要被最小化的损失度量，接着我们可以创建优化器。在这种情况中，用的是梯度下降的基本形式，步长设为0.5。
+
+优化过程并不是在这里执行。实际上，还没计算任何东西，我们只是往TensorFlow图中添加了优化器，以便之后的操作。
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}20}]:} \PY{n}{optimizer} \PY{o}{=} \PY{n}{tf}\PY{o}{.}\PY{n}{train}\PY{o}{.}\PY{n}{GradientDescentOptimizer}\PY{p}{(}\PY{n}{learning\PYZus{}rate}\PY{o}{=}\PY{l+m+mf}{0.5}\PY{p}{)}\PY{o}{.}\PY{n}{minimize}\PY{p}{(}\PY{n}{cost}\PY{p}{)}
+\end{Verbatim}
+
+
+    \hypertarget{ux6027ux80fdux5ea6ux91cf}{%
+\subsubsection{性能度量}\label{ux6027ux80fdux5ea6ux91cf}}
+
+    我们需要另外一些性能度量，来向用户展示这个过程。
+
+这是一个布尔值向量，代表预测类型是否等于每张图片的真实类型。
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}21}]:} \PY{n}{correct\PYZus{}prediction} \PY{o}{=} \PY{n}{tf}\PY{o}{.}\PY{n}{equal}\PY{p}{(}\PY{n}{y\PYZus{}pred\PYZus{}cls}\PY{p}{,} \PY{n}{y\PYZus{}true\PYZus{}cls}\PY{p}{)}
+\end{Verbatim}
+
+
+    上面先将布尔值向量类型转换成浮点型向量，这样子False就变成0，True变成1，然后计算这些值的平均数，以此来计算分类的准确度。
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}22}]:} \PY{n}{accuracy} \PY{o}{=} \PY{n}{tf}\PY{o}{.}\PY{n}{reduce\PYZus{}mean}\PY{p}{(}\PY{n}{tf}\PY{o}{.}\PY{n}{cast}\PY{p}{(}\PY{n}{correct\PYZus{}prediction}\PY{p}{,} \PY{n}{tf}\PY{o}{.}\PY{n}{float32}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \hypertarget{ux8fd0ux884ctensorflow}{%
+\subsection{运行TensorFlow}\label{ux8fd0ux884ctensorflow}}
+
+    \hypertarget{ux521bux5efatensorflowux4f1aux8bddsession}{%
+\subsubsection{创建TensorFlow会话（session）}\label{ux521bux5efatensorflowux4f1aux8bddsession}}
+
+一旦创建了TensorFlow图，我们需要创建一个TensorFlow session，用来运行图。
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}23}]:} \PY{n}{session} \PY{o}{=} \PY{n}{tf}\PY{o}{.}\PY{n}{Session}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \hypertarget{ux521dux59cbux5316ux53d8ux91cf}{%
+\subsubsection{初始化变量}\label{ux521dux59cbux5316ux53d8ux91cf}}
+
+我们需要在开始优化\texttt{weights}和\texttt{biases}变量之前对它们进行初始化。
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}24}]:} \PY{n}{session}\PY{o}{.}\PY{n}{run}\PY{p}{(}\PY{n}{tf}\PY{o}{.}\PY{n}{global\PYZus{}variables\PYZus{}initializer}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \hypertarget{ux7528ux6765ux4f18ux5316ux8fedux4ee3ux7684ux5e2eux52a9ux51fdux6570}{%
+\subsubsection{用来优化迭代的帮助函数}\label{ux7528ux6765ux4f18ux5316ux8fedux4ee3ux7684ux5e2eux52a9ux51fdux6570}}
+
+    在训练集中有50,000张图。用这些图像计算模型的梯度会花很多时间。因此我们利用随机梯度下降的方法，它在优化器的每次迭代里只用到了一小部分的图像。
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}25}]:} \PY{n}{batch\PYZus{}size} \PY{o}{=} \PY{l+m+mi}{100}
+\end{Verbatim}
+
+
+    函数执行了多次的优化迭代来逐步地提升模型的\texttt{weights}和\texttt{biases}。在每次迭代中，从训练集中选择一批新的数据，然后TensorFlow用这些训练样本来执行优化器。
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}26}]:} \PY{k}{def} \PY{n+nf}{optimize}\PY{p}{(}\PY{n}{num\PYZus{}iterations}\PY{p}{)}\PY{p}{:}
+             \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n}{num\PYZus{}iterations}\PY{p}{)}\PY{p}{:}
+                 \PY{c+c1}{\PYZsh{} Get a batch of training examples.}
+                 \PY{c+c1}{\PYZsh{} x\PYZus{}batch now holds a batch of images and}
+                 \PY{c+c1}{\PYZsh{} y\PYZus{}true\PYZus{}batch are the true labels for those images.}
+                 \PY{n}{x\PYZus{}batch}\PY{p}{,} \PY{n}{y\PYZus{}true\PYZus{}batch}\PY{p}{,} \PY{n}{\PYZus{}} \PY{o}{=} \PY{n}{data}\PY{o}{.}\PY{n}{random\PYZus{}batch}\PY{p}{(}\PY{n}{batch\PYZus{}size}\PY{o}{=}\PY{n}{batch\PYZus{}size}\PY{p}{)}
+                 
+                 \PY{c+c1}{\PYZsh{} Put the batch into a dict with the proper names}
+                 \PY{c+c1}{\PYZsh{} for placeholder variables in the TensorFlow graph.}
+                 \PY{c+c1}{\PYZsh{} Note that the placeholder for y\PYZus{}true\PYZus{}cls is not set}
+                 \PY{c+c1}{\PYZsh{} because it is not used during training.}
+                 \PY{n}{feed\PYZus{}dict\PYZus{}train} \PY{o}{=} \PY{p}{\PYZob{}}\PY{n}{x}\PY{p}{:} \PY{n}{x\PYZus{}batch}\PY{p}{,}
+                                    \PY{n}{y\PYZus{}true}\PY{p}{:} \PY{n}{y\PYZus{}true\PYZus{}batch}\PY{p}{\PYZcb{}}
+         
+                 \PY{c+c1}{\PYZsh{} Run the optimizer using this batch of training data.}
+                 \PY{c+c1}{\PYZsh{} TensorFlow assigns the variables in feed\PYZus{}dict\PYZus{}train}
+                 \PY{c+c1}{\PYZsh{} to the placeholder variables and then runs the optimizer.}
+                 \PY{n}{session}\PY{o}{.}\PY{n}{run}\PY{p}{(}\PY{n}{optimizer}\PY{p}{,} \PY{n}{feed\PYZus{}dict}\PY{o}{=}\PY{n}{feed\PYZus{}dict\PYZus{}train}\PY{p}{)}
+\end{Verbatim}
+
+
+    \hypertarget{ux5c55ux793aux6027ux80fdux7684ux5e2eux52a9ux51fdux6570}{%
+\subsubsection{展示性能的帮助函数}\label{ux5c55ux793aux6027ux80fdux7684ux5e2eux52a9ux51fdux6570}}
+
+    测试集数据字典被当做TensorFlow图的输入。注意，在TensorFlow图中，placeholder变量必须使用正确的名字。
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}27}]:} \PY{n}{feed\PYZus{}dict\PYZus{}test} \PY{o}{=} \PY{p}{\PYZob{}}\PY{n}{x}\PY{p}{:} \PY{n}{data}\PY{o}{.}\PY{n}{x\PYZus{}test}\PY{p}{,}
+                           \PY{n}{y\PYZus{}true}\PY{p}{:} \PY{n}{data}\PY{o}{.}\PY{n}{y\PYZus{}test}\PY{p}{,}
+                           \PY{n}{y\PYZus{}true\PYZus{}cls}\PY{p}{:} \PY{n}{data}\PY{o}{.}\PY{n}{y\PYZus{}test\PYZus{}cls}\PY{p}{\PYZcb{}}
+\end{Verbatim}
+
+
+    用来打印测试集分类准确度的函数。
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}28}]:} \PY{k}{def} \PY{n+nf}{print\PYZus{}accuracy}\PY{p}{(}\PY{p}{)}\PY{p}{:}
+             \PY{c+c1}{\PYZsh{} Use TensorFlow to compute the accuracy.}
+             \PY{n}{acc} \PY{o}{=} \PY{n}{session}\PY{o}{.}\PY{n}{run}\PY{p}{(}\PY{n}{accuracy}\PY{p}{,} \PY{n}{feed\PYZus{}dict}\PY{o}{=}\PY{n}{feed\PYZus{}dict\PYZus{}test}\PY{p}{)}
+             
+             \PY{c+c1}{\PYZsh{} Print the accuracy.}
+             \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Accuracy on test\PYZhy{}set: }\PY{l+s+si}{\PYZob{}0:.1\PYZpc{}\PYZcb{}}\PY{l+s+s2}{\PYZdq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{acc}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    用scikit-learn打印混淆矩阵。
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}29}]:} \PY{k}{def} \PY{n+nf}{print\PYZus{}confusion\PYZus{}matrix}\PY{p}{(}\PY{p}{)}\PY{p}{:}
+             \PY{c+c1}{\PYZsh{} Get the true classifications for the test\PYZhy{}set.}
+             \PY{n}{cls\PYZus{}true} \PY{o}{=} \PY{n}{data}\PY{o}{.}\PY{n}{y\PYZus{}test\PYZus{}cls}
+             
+             \PY{c+c1}{\PYZsh{} Get the predicted classifications for the test\PYZhy{}set.}
+             \PY{n}{cls\PYZus{}pred} \PY{o}{=} \PY{n}{session}\PY{o}{.}\PY{n}{run}\PY{p}{(}\PY{n}{y\PYZus{}pred\PYZus{}cls}\PY{p}{,} \PY{n}{feed\PYZus{}dict}\PY{o}{=}\PY{n}{feed\PYZus{}dict\PYZus{}test}\PY{p}{)}
+         
+             \PY{c+c1}{\PYZsh{} Get the confusion matrix using sklearn.}
+             \PY{n}{cm} \PY{o}{=} \PY{n}{confusion\PYZus{}matrix}\PY{p}{(}\PY{n}{y\PYZus{}true}\PY{o}{=}\PY{n}{cls\PYZus{}true}\PY{p}{,}
+                                   \PY{n}{y\PYZus{}pred}\PY{o}{=}\PY{n}{cls\PYZus{}pred}\PY{p}{)}
+         
+             \PY{c+c1}{\PYZsh{} Print the confusion matrix as text.}
+             \PY{n+nb}{print}\PY{p}{(}\PY{n}{cm}\PY{p}{)}
+         
+             \PY{c+c1}{\PYZsh{} Plot the confusion matrix as an image.}
+             \PY{n}{plt}\PY{o}{.}\PY{n}{imshow}\PY{p}{(}\PY{n}{cm}\PY{p}{,} \PY{n}{interpolation}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{nearest}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{cmap}\PY{o}{=}\PY{n}{plt}\PY{o}{.}\PY{n}{cm}\PY{o}{.}\PY{n}{Blues}\PY{p}{)}
+         
+             \PY{c+c1}{\PYZsh{} Make various adjustments to the plot.}
+             \PY{n}{plt}\PY{o}{.}\PY{n}{tight\PYZus{}layout}\PY{p}{(}\PY{p}{)}
+             \PY{n}{plt}\PY{o}{.}\PY{n}{colorbar}\PY{p}{(}\PY{p}{)}
+             \PY{n}{tick\PYZus{}marks} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{arange}\PY{p}{(}\PY{n}{num\PYZus{}classes}\PY{p}{)}
+             \PY{n}{plt}\PY{o}{.}\PY{n}{xticks}\PY{p}{(}\PY{n}{tick\PYZus{}marks}\PY{p}{,} \PY{n+nb}{range}\PY{p}{(}\PY{n}{num\PYZus{}classes}\PY{p}{)}\PY{p}{)}
+             \PY{n}{plt}\PY{o}{.}\PY{n}{yticks}\PY{p}{(}\PY{n}{tick\PYZus{}marks}\PY{p}{,} \PY{n+nb}{range}\PY{p}{(}\PY{n}{num\PYZus{}classes}\PY{p}{)}\PY{p}{)}
+             \PY{n}{plt}\PY{o}{.}\PY{n}{xlabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Predicted}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+             \PY{n}{plt}\PY{o}{.}\PY{n}{ylabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{True}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+             
+             \PY{c+c1}{\PYZsh{} Ensure the plot is shown correctly with multiple plots}
+             \PY{c+c1}{\PYZsh{} in a single Notebook cell.}
+             \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    绘制测试集中误分类图像的函数。
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}30}]:} \PY{k}{def} \PY{n+nf}{plot\PYZus{}example\PYZus{}errors}\PY{p}{(}\PY{p}{)}\PY{p}{:}
+             \PY{c+c1}{\PYZsh{} Use TensorFlow to get a list of boolean values}
+             \PY{c+c1}{\PYZsh{} whether each test\PYZhy{}image has been correctly classified,}
+             \PY{c+c1}{\PYZsh{} and a list for the predicted class of each image.}
+             \PY{n}{correct}\PY{p}{,} \PY{n}{cls\PYZus{}pred} \PY{o}{=} \PY{n}{session}\PY{o}{.}\PY{n}{run}\PY{p}{(}\PY{p}{[}\PY{n}{correct\PYZus{}prediction}\PY{p}{,} \PY{n}{y\PYZus{}pred\PYZus{}cls}\PY{p}{]}\PY{p}{,}
+                                             \PY{n}{feed\PYZus{}dict}\PY{o}{=}\PY{n}{feed\PYZus{}dict\PYZus{}test}\PY{p}{)}
+         
+             \PY{c+c1}{\PYZsh{} Negate the boolean array.}
+             \PY{n}{incorrect} \PY{o}{=} \PY{p}{(}\PY{n}{correct} \PY{o}{==} \PY{k+kc}{False}\PY{p}{)}
+             
+             \PY{c+c1}{\PYZsh{} Get the images from the test\PYZhy{}set that have been}
+             \PY{c+c1}{\PYZsh{} incorrectly classified.}
+             \PY{n}{images} \PY{o}{=} \PY{n}{data}\PY{o}{.}\PY{n}{x\PYZus{}test}\PY{p}{[}\PY{n}{incorrect}\PY{p}{]}
+             
+             \PY{c+c1}{\PYZsh{} Get the predicted classes for those images.}
+             \PY{n}{cls\PYZus{}pred} \PY{o}{=} \PY{n}{cls\PYZus{}pred}\PY{p}{[}\PY{n}{incorrect}\PY{p}{]}
+         
+             \PY{c+c1}{\PYZsh{} Get the true classes for those images.}
+             \PY{n}{cls\PYZus{}true} \PY{o}{=} \PY{n}{data}\PY{o}{.}\PY{n}{y\PYZus{}test\PYZus{}cls}\PY{p}{[}\PY{n}{incorrect}\PY{p}{]}
+             
+             \PY{c+c1}{\PYZsh{} Plot the first 9 images.}
+             \PY{n}{plot\PYZus{}images}\PY{p}{(}\PY{n}{images}\PY{o}{=}\PY{n}{images}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{:}\PY{l+m+mi}{9}\PY{p}{]}\PY{p}{,}
+                         \PY{n}{cls\PYZus{}true}\PY{o}{=}\PY{n}{cls\PYZus{}true}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{:}\PY{l+m+mi}{9}\PY{p}{]}\PY{p}{,}
+                         \PY{n}{cls\PYZus{}pred}\PY{o}{=}\PY{n}{cls\PYZus{}pred}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{:}\PY{l+m+mi}{9}\PY{p}{]}\PY{p}{)}
+\end{Verbatim}
+
+
+    \hypertarget{ux7ed8ux5236ux6a21ux578bux6743ux91cdux7684ux5e2eux52a9ux51fdux6570}{%
+\subsubsection{绘制模型权重的帮助函数}\label{ux7ed8ux5236ux6a21ux578bux6743ux91cdux7684ux5e2eux52a9ux51fdux6570}}
+
+    这个函数用来绘制模型的权重\texttt{weights}。画了10张图像，训练模型所识别出的每个数字对应着一张图。
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}31}]:} \PY{k}{def} \PY{n+nf}{plot\PYZus{}weights}\PY{p}{(}\PY{p}{)}\PY{p}{:}
+             \PY{c+c1}{\PYZsh{} Get the values for the weights from the TensorFlow variable.}
+             \PY{n}{w} \PY{o}{=} \PY{n}{session}\PY{o}{.}\PY{n}{run}\PY{p}{(}\PY{n}{weights}\PY{p}{)}
+             
+             \PY{c+c1}{\PYZsh{} Get the lowest and highest values for the weights.}
+             \PY{c+c1}{\PYZsh{} This is used to correct the colour intensity across}
+             \PY{c+c1}{\PYZsh{} the images so they can be compared with each other.}
+             \PY{n}{w\PYZus{}min} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{min}\PY{p}{(}\PY{n}{w}\PY{p}{)}
+             \PY{n}{w\PYZus{}max} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{max}\PY{p}{(}\PY{n}{w}\PY{p}{)}
+         
+             \PY{c+c1}{\PYZsh{} Create figure with 3x4 sub\PYZhy{}plots,}
+             \PY{c+c1}{\PYZsh{} where the last 2 sub\PYZhy{}plots are unused.}
+             \PY{n}{fig}\PY{p}{,} \PY{n}{axes} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{subplots}\PY{p}{(}\PY{l+m+mi}{3}\PY{p}{,} \PY{l+m+mi}{4}\PY{p}{)}
+             \PY{n}{fig}\PY{o}{.}\PY{n}{subplots\PYZus{}adjust}\PY{p}{(}\PY{n}{hspace}\PY{o}{=}\PY{l+m+mf}{0.3}\PY{p}{,} \PY{n}{wspace}\PY{o}{=}\PY{l+m+mf}{0.3}\PY{p}{)}
+         
+             \PY{k}{for} \PY{n}{i}\PY{p}{,} \PY{n}{ax} \PY{o+ow}{in} \PY{n+nb}{enumerate}\PY{p}{(}\PY{n}{axes}\PY{o}{.}\PY{n}{flat}\PY{p}{)}\PY{p}{:}
+                 \PY{c+c1}{\PYZsh{} Only use the weights for the first 10 sub\PYZhy{}plots.}
+                 \PY{k}{if} \PY{n}{i}\PY{o}{\PYZlt{}}\PY{l+m+mi}{10}\PY{p}{:}
+                     \PY{c+c1}{\PYZsh{} Get the weights for the i\PYZsq{}th digit and reshape it.}
+                     \PY{c+c1}{\PYZsh{} Note that w.shape == (img\PYZus{}size\PYZus{}flat, 10)}
+                     \PY{n}{image} \PY{o}{=} \PY{n}{w}\PY{p}{[}\PY{p}{:}\PY{p}{,} \PY{n}{i}\PY{p}{]}\PY{o}{.}\PY{n}{reshape}\PY{p}{(}\PY{n}{img\PYZus{}shape}\PY{p}{)}
+         
+                     \PY{c+c1}{\PYZsh{} Set the label for the sub\PYZhy{}plot.}
+                     \PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}xlabel}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Weights: }\PY{l+s+si}{\PYZob{}0\PYZcb{}}\PY{l+s+s2}{\PYZdq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{i}\PY{p}{)}\PY{p}{)}
+         
+                     \PY{c+c1}{\PYZsh{} Plot the image.}
+                     \PY{n}{ax}\PY{o}{.}\PY{n}{imshow}\PY{p}{(}\PY{n}{image}\PY{p}{,} \PY{n}{vmin}\PY{o}{=}\PY{n}{w\PYZus{}min}\PY{p}{,} \PY{n}{vmax}\PY{o}{=}\PY{n}{w\PYZus{}max}\PY{p}{,} \PY{n}{cmap}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{seismic}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         
+                 \PY{c+c1}{\PYZsh{} Remove ticks from each sub\PYZhy{}plot.}
+                 \PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}xticks}\PY{p}{(}\PY{p}{[}\PY{p}{]}\PY{p}{)}
+                 \PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}yticks}\PY{p}{(}\PY{p}{[}\PY{p}{]}\PY{p}{)}
+                 
+             \PY{c+c1}{\PYZsh{} Ensure the plot is shown correctly with multiple plots}
+             \PY{c+c1}{\PYZsh{} in a single Notebook cell.}
+             \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \hypertarget{ux4f18ux5316ux4e4bux524dux7684ux6027ux80fd}{%
+\subsection{优化之前的性能}\label{ux4f18ux5316ux4e4bux524dux7684ux6027ux80fd}}
+
+测试集上的准确度是9.8\%。这是由于模型只做了初始化，并没做任何优化，所以它通常将图像预测成数字零，正如下面绘制的图像那样，刚好测试集中9.8\%的图像是数字零。
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}32}]:} \PY{n}{print\PYZus{}accuracy}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Accuracy on test-set: 9.8\%
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}33}]:} \PY{n}{plot\PYZus{}example\PYZus{}errors}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_80_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \hypertarget{ux6b21ux8fedux4ee3ux4f18ux5316ux540eux7684ux6027ux80fd}{%
+\subsection{1次迭代优化后的性能}\label{ux6b21ux8fedux4ee3ux4f18ux5316ux540eux7684ux6027ux80fd}}
+
+在完成一次迭代优化之后，模型在测试集上的准确率从9.8\%提高到了40.7\%。这意味着它大约10次里面会误分类6次，正如下面所显示的。
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}34}]:} \PY{n}{optimize}\PY{p}{(}\PY{n}{num\PYZus{}iterations}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}35}]:} \PY{n}{print\PYZus{}accuracy}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Accuracy on test-set: 15.9\%
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}36}]:} \PY{n}{plot\PYZus{}example\PYZus{}errors}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_84_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    下面绘制的是权重。正值为红色，负值为蓝色。这些权重可以直观地理解为图像滤波器。
+
+例如，权重用来确定一张数字零的图像对圆形图像有正反应（红色），对圆形图像的中间部分有负反应（蓝色）。
+
+类似的，权重也用来确定一张数字一的图像对图像中心垂直线段有正反应（红色），对线段周围有负反应（蓝色）。
+
+注意到权重大多看起来跟它要识别的数字很像。这是因为只做了一次迭代，即权重只在100张图像上训练。等经过上千张图像的训练之后，权重会变得更难分辨，因为它们需要识别出数字的许多种书写方法。
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}37}]:} \PY{n}{plot\PYZus{}weights}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_86_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \hypertarget{ux6b21ux4f18ux5316ux8fedux4ee3ux540eux7684ux6027ux80fd}{%
+\subsection{10次优化迭代后的性能}\label{ux6b21ux4f18ux5316ux8fedux4ee3ux540eux7684ux6027ux80fd}}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}38}]:} \PY{c+c1}{\PYZsh{} We have already performed 1 iteration.}
+         \PY{n}{optimize}\PY{p}{(}\PY{n}{num\PYZus{}iterations}\PY{o}{=}\PY{l+m+mi}{9}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}39}]:} \PY{n}{print\PYZus{}accuracy}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Accuracy on test-set: 66.2\%
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}40}]:} \PY{n}{plot\PYZus{}example\PYZus{}errors}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_90_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}41}]:} \PY{n}{plot\PYZus{}weights}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_91_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \hypertarget{ux6b21ux8fedux4ee3ux4e4bux540eux7684ux6027ux80fd}{%
+\subsection{1000次迭代之后的性能}\label{ux6b21ux8fedux4ee3ux4e4bux540eux7684ux6027ux80fd}}
+
+在迭代了1000次之后，模型在十次里面大约只误识别了一次。如下图所示，有些误识别情有可原，因为即使在人类眼里，也很难确定图像（的数字），然而有一些图像是很明显的，好的模型应该能分辨出来。但这个简单的模型无法达到更好的性能，因此需要更为复杂的模型。
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}42}]:} \PY{c+c1}{\PYZsh{} We have already performed 10 iterations.}
+         \PY{n}{optimize}\PY{p}{(}\PY{n}{num\PYZus{}iterations}\PY{o}{=}\PY{l+m+mi}{990}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}43}]:} \PY{n}{print\PYZus{}accuracy}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Accuracy on test-set: 91.5\%
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}44}]:} \PY{n}{plot\PYZus{}example\PYZus{}errors}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_95_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    模型经过了1000次迭代训练，每次迭代用到训练集里面的100张图像。由于图像的多样化，现在权重变得很难辨认，我们可能会怀疑这些权重是否真的理解数字是怎么由线条组成的，或者模型只是记住了许多不同的像素。
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}45}]:} \PY{n}{plot\PYZus{}weights}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_97_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    我们也可以打印并绘制出混淆矩阵，它让我们看到误分类的更多细节。例如，它展示了描绘着数字5的图像有时会被误分类成其他可能的数字，但大多是6或8。
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}46}]:} \PY{n}{print\PYZus{}confusion\PYZus{}matrix}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+[[ 956    0    3    1    1    4   11    3    1    0]
+ [   0 1114    2    2    1    2    4    2    8    0]
+ [   6    8  925   23   11    3   13   12   26    5]
+ [   3    1   19  928    0   34    2   10    5    8]
+ [   1    3    4    2  918    2   11    2    6   33]
+ [   8    3    7   36    8  781   15    6   20    8]
+ [   9    3    5    1   14   12  912    1    1    0]
+ [   2   11   24   10    6    1    0  941    1   32]
+ [   8   13   11   44   11   52   13   14  797   11]
+ [  11    7    2   14   50   10    0   30    4  881]]
+
+    \end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_99_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    现在我们用TensorFlow完成了任务，关闭session，释放资源。
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}47}]:} \PY{c+c1}{\PYZsh{} This has been commented out in case you want to modify and experiment}
+         \PY{c+c1}{\PYZsh{} with the Notebook without having to restart it.}
+         \PY{c+c1}{\PYZsh{} session.close()}
+\end{Verbatim}
+
+
+    \hypertarget{ux7ec3ux4e60}{%
+\subsection{练习}\label{ux7ec3ux4e60}}
+
+These are a few suggestions for exercises that may help improve your
+skills with TensorFlow. It is important to get hands-on experience with
+TensorFlow in order to learn how to use it properly.
+
+下面使一些可能会让你提升TensorFlow技能的一些建议练习。为了学习如何更合适地使用TensorFlow，实践经验是很重要的。
+在你对这个Notebook进行修改之前，可能需要先备份一下。
+
+\begin{itemize}
+\tightlist
+\item
+  改变优化器的学习率。
+\item
+  改变优化器，比如用\texttt{AdagradOptimizer} 或
+  \texttt{AdamOptimizer}。
+\item
+  将batch-size改为1或1000。
+\item
+  这些改变如何影响性能？
+\item
+  你觉得这些改变对其他分类问题或数学模型有相同的影响吗?
+\item
+  如果你不改变任何参数，多次运行Notebook，会得到完成一样的结果吗？为什么？
+\item
+  改变\texttt{plot\_example\_errors()} 函数，使它打印误分类的
+  \texttt{logits}和\texttt{y\_pred}值。
+\item
+  用\texttt{sparse\_softmax\_cross\_entropy\_with\_logits} 代替
+  \texttt{softmax\_cross\_entropy\_with\_logits}。这可能需要改变代码的多个地方。探讨使用这两中方法的优缺点。
+\item
+  不看源码，自己重写程序。
+\item
+  向朋友解释程序如何工作。
+\end{itemize}
+
+    \hypertarget{license-mit}{%
+\subsection{License (MIT)}\label{license-mit}}
+
+Copyright (c) 2016 by \href{http://www.hvass-labs.org/}{Magnus Erik
+Hvass Pedersen}
+
+Permission is hereby granted, free of charge, to any person obtaining a
+copy of this software and associated documentation files (the
+``Software''), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:
+
+The above copyright notice and this permission notice shall be included
+in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED ``AS IS'', WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+
+    % Add a bibliography block to the postdoc
+    
+    
+    
+    \end{document}
